@@ -1,0 +1,29 @@
+.headers {
+  background-color: whitesmoke;
+  width: 100%;
+  height: 125px;
+}
+
+/* Little bit of a problem between screen sizes */
+.logoBox {
+ height: inherit;
+ width: 20%;
+}
+
+.diagonal {
+ background-color: pink;
+ width: 100%;
+ height: 85%;
+ transform: rotate(-15deg) scaleX(10);
+}
+
+.sidebar {
+  background-color: blueviolet;
+  height: 80vh;
+  width: 100px;
+}
+
+.main {
+  display: flex;
+}
+
