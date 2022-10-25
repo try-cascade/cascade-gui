@@ -1,0 +1,7 @@
+.main {
+  display: grid;
+  align-items: center;
+  background-color: #cde0fe;
+  width: 100%;
+  justify-items: center;
+}
