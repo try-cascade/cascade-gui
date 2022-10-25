@@ -16,6 +16,15 @@ const AddServiceModal = ({ onClick }) => {
           <input type="text" id="image" name="image" />
           <label htmlFor="port">Port:</label>
           <input type="text" id="port" name="port" />
+          <label htmlFor="type">What type of service?</label>
+
+          <select name="type" id="type">
+            <option value="type">Front End</option>
+            <option value="type">Backend</option>
+          </select>
+
+          <label htmlFor="path">Path:</label>
+          <input type="text" id="path" name="path" />
         </form>
       </div>
     </div>
@@ -33,4 +42,9 @@ For create:
   - name the application
   - put in the image link
   - add a port (if needed)
+
+If front end, need to ask for path information with load balancer and service is placed in a public subnet
+If back end, service might need to be registered with service discovery (at future date) and placed in a private subnet
+
+Do we need to add an option to input container private variables?
 */
