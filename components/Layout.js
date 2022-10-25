@@ -1,6 +1,6 @@
 import Head from 'next/head'
-// import styles from '../styles/Home.module.css'
 import styles from "../styles/Layout.module.css"
+import Link from 'next/link'
 
 const Layout = ({ children }) => {
   return (
@@ -15,11 +15,15 @@ const Layout = ({ children }) => {
         <div className={styles.logoBox}>
           <div className={styles.diagonal}></div>
         </div>
-        Hello
       </header>
       <div className={styles.main}>
         <nav className={styles.sidebar}>
-
+          <ul>
+            <Link href="/">home</Link>
+            <Link href="/application">application</Link>
+            <Link href="/environments">environments</Link>
+            <Link href="/services">services</Link>
+          </ul>
         </nav>
         {children}
       </div>
