@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from "../styles/Layout.module.css"
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Layout = ({ children }) => {
   return (
@@ -19,10 +20,38 @@ const Layout = ({ children }) => {
       <div className={styles.main}>
         <nav className={styles.sidebar}>
           <ul>
-            <Link href="/">home</Link>
-            <Link href="/application">application</Link>
-            <Link href="/environments">environments</Link>
-            <Link href="/services">services</Link>
+            <li>
+              <Link href="/">
+                <div>
+                  <Image src='/../public/images/home_blue.png' alt="home button" width="50px" height="50px" />
+                  Home
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/application">
+                <div>
+                  <Image src='/../public/images/application_blue.png' alt="application button" width="50px" height="50px" />
+                  Application
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/environment">
+                <div>
+                  <Image src='/../public/images/environments_blue.png' alt="environment button" width="50px" height="50px" />
+                  Environments
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href="/services">
+                <div>
+                  <Image src='/../public/images/fargate_blue.png' alt="services button" width="50px" height="50px" />
+                  Services
+                </div>
+              </Link>
+            </li>
           </ul>
         </nav>
         {children}
