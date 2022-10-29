@@ -1,29 +1,34 @@
 
 // import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
+
+import { useEffect, useState } from 'react'
+import PrimaryInterface from '../components/PrimaryInterface'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const [applications, setApplications] = useState([])
+
+  const router = useRouter()
+
+  useEffect(() => {
+    async function getApplications() {
+      const response = await fetch('http://localhost:3005/aws/applications');
+      const data = await response.json()
+
+      setApplications(data.applications)
+
+      if (data.applications.length === 0) {
+        router.push('/welcome')
+      }
+    }
+
+    getApplications()
+  }, [])
+
+  console.log(applications)
+
   return (
-    <main className={styles.main}>
-      <div className={styles.content}>
-        <Link href="/application">
-          <button className={styles.button}>
-            Application
-          </button>
-        </Link>
-        <Link href="/environment">
-          <button className={styles.button}>
-            Environments
-          </button>
-        </Link>
-        <Link href="/services">
-          <button className={styles.button}>
-            Services
-          </button>
-        </Link>
-      </div>
-    </main>
+    <PrimaryInterface applications={applications} />
   )
 }
 

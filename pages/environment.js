@@ -13,6 +13,7 @@ export default function Environments() {
           <h1>Environments</h1>
           <button onClick={() => setAdd(true)}>Create</button>
           <h2>Test</h2>
+          <button>Download Terraform file</button>
           <p>Envi Name, Region, Account ID</p>
           <h4>Services</h4>
           <table>
@@ -36,6 +37,7 @@ export default function Environments() {
             <li>Office</li>
           </ul>
           <h2>Production</h2>
+          <button>Download Terraform file</button>
           <p>Envi Name, Region, Account ID</p>
           <h4>Services</h4>
           <table>
@@ -71,5 +73,4 @@ export default function Environments() {
    - account ID
    - list of services + service type
    - Tags
-
 */

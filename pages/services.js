@@ -19,8 +19,6 @@ export default function Services() {
           <button>Delete</button>
           <button>Package</button>
           <button>Deploy</button>
-          <button>Pause</button>
-          <button>Resume</button>
           <input type='text' value='search' />
           <div>
             <table>
