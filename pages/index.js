@@ -61,17 +61,39 @@ export default function Home() {
     await fetch('http://localhost:3005/terraform/deploy', requestOptions)
   }
 
+  const handleDestroy = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    };
+
+    await fetch('http://localhost:3005/terraform/destroy', requestOptions)
+    // change button color to red
+    // have a pop up to confirm destroy
+  }
+
   return (
     <>
       {addService ? <AddServiceModal onClick={setAddService}/> : null}
       {viewService ? <ViewServiceModal onClick={setViewService}/> : null}
       <main className={styles.main}>
+
         <div className={styles.content}>
-          <h1>Containers</h1>
+          <h1>Application</h1>
+          <button onClick={handleDeploy}>Deploy Stack</button>
+          <button onClick={handleDestroy}>Destroy Stack</button>
+          <button>View JSON</button>
+
+          <h2>Environment</h2>
+          <p>add a pic here</p>
+
+          <h2>Containers</h2>
           <button onClick={() => setAddService(!addService)}>Add Container</button>
           <button>Delete Container</button>
-          <button onClick={handleDeploy}>Deploy Stack</button>
-          <button>View JSON</button>
+          
           <input type='text' value='search' />
           <div>
             <table>

@@ -6,6 +6,7 @@ const ServiceForm = ({ appName, envName }) => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [port, setPort] = useState('')
+  const [envVars, setEnvVars] = useState('')
 
   const router = useRouter()
 
@@ -34,7 +35,8 @@ const ServiceForm = ({ appName, envName }) => {
       image,
       port,
       type: "frontend",
-      frontFacingPath: "/"
+      frontFacingPath: "/",
+      var: envVars.split(", ")
     }
 
     const requestOptions = {
@@ -49,6 +51,12 @@ const ServiceForm = ({ appName, envName }) => {
     await fetch('http://localhost:3005/aws/service', requestOptions)
 
     router.push('/')
+  }
+
+  const handleAddEnvClick = (e) => {
+    e.preventDefault()
+
+    setEnvInputs(envInputs++)
   }
 
   return (
@@ -66,6 +74,11 @@ const ServiceForm = ({ appName, envName }) => {
         <label>
           Port?
           <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
+        </label>
+        <button onClick={handleAddEnvClick}>Add env variables</button>
+        <label>
+          Could you provide your env key value pairs formatted like: "Key=Value, Key=Value"
+          <textarea onChange={(e) => setEnvVars(e.target.value)}>{envVars}</textarea>
         </label>
         <input type="submit" />
       </form>
