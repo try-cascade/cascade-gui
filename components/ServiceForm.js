@@ -6,14 +6,8 @@ const ServiceForm = ({ appName, envName }) => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [port, setPort] = useState('')
-  const [uploadedFiles, setUploadedFiles] = useState([])
 
   const router = useRouter()
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    router.push('/')
-  }
 
   /*
   Payload:
@@ -52,21 +46,17 @@ const ServiceForm = ({ appName, envName }) => {
       body: JSON.stringify(body)
     };
 
-    await fetch('http://localhost:3005/aws/environment', requestOptions)
+    await fetch('http://localhost:3005/aws/service', requestOptions)
 
-    onSubmit(true)
-  }
-
-  const handleFileUpload = (e) => {
-    console.log(e)
+    router.push('/')
   }
 
   return (
     <>
-      <p>Your environment is being created, let's finish up by adding a service.</p>
+      <p>Your environment is being created, let's finish up by adding a container.</p>
       <form onSubmit={handleSubmit}>
         <label>
-          What would you like to name your service?
+          What would you like to name your container?
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <label>
@@ -76,10 +66,6 @@ const ServiceForm = ({ appName, envName }) => {
         <label>
           Port?
           <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
-        </label>
-        <label>
-          .env file
-          <input type='file' accept='.env' onChange={handleFileUpload} />
         </label>
         <input type="submit" />
       </form>

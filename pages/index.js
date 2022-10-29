@@ -11,7 +11,14 @@ export default function Home() {
   const [applications, setApplications] = useState([])
   const [addService, setAddService] = useState(false)
   const [viewService, setViewService] = useState(false) // think about this scaled for 10 different services
-  const date = new Date
+  const [containers, setContainers] = useState([])
+
+//   {
+//     "name": "bakery",
+//     "port": 3000,
+//     "image": "/container",
+//     "s3Arn": "arn:aws:s3:::cascade-cat-034591612793/test/bakery/.env"
+// },
 
   const router = useRouter()
 
@@ -35,19 +42,24 @@ export default function Home() {
       const response = await fetch('http://localhost:3005/aws/services');
       const data = await response.json()
 
-      setApplications(data.applications)
-
-      if (data.applications.length === 0) {
-        router.push('/welcome')
-      }
+      setContainers(data.containers)
     }
 
     getApplications()
   }, [])
 
+  const handleDeploy = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+    };
 
-
-  console.log(applications)
+    // await fetch('http://localhost:3005/terraform/generate', requestOptions)
+    await fetch('http://localhost:3005/terraform/deploy', requestOptions)
+  }
 
   return (
     <>
@@ -56,10 +68,10 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.content}>
           <h1>Containers</h1>
-          <button onClick={() => setAddService(!addService)}>Create</button>
-          <button>Delete</button>
-          <button>Package</button>
-          <button>Deploy</button>
+          <button onClick={() => setAddService(!addService)}>Add Container</button>
+          <button>Delete Container</button>
+          <button onClick={handleDeploy}>Deploy Stack</button>
+          <button>View JSON</button>
           <input type='text' value='search' />
           <div>
             <table>
@@ -67,22 +79,21 @@ export default function Home() {
                 <tr>
                   <th></th>
                   <th>Name</th>
-                  <th>State</th>
                   <th>Image</th>
-                  {/* <th>IP address</th> */}
                   <th>Port</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><input type="checkbox" id={"service_name?"} name={"service_name?"} /></td>
-                  <td><label htmlFor={"service_name?"}>{"service_name?"}</label></td>
-                  <td>Running</td>
-                  <td>Image</td>
-                  {/* <td>0.0.0.0</td> */}
-                  <td>3000</td>
-                  {/* <td>link</td> */}
-                </tr>
+                {containers.map(container => {
+                  return (
+                    <tr key={container.name}>
+                    <td><input type="checkbox" id={container.name} name={container.name} /></td>
+                      <td>{container.name}</td>
+                      <td>{container.image}</td>
+                      <td>{container.port}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

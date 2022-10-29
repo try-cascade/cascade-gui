@@ -11,10 +11,11 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({ name })
+      body: JSON.stringify({ name: appName[0] })
     };
 
-    await fetch('http://localhost:3005/aws/bucket', requestOptions)
+    const response = await fetch('http://localhost:3005/aws/bucket', requestOptions)
+    console.log(response)
 
     onSubmit(true)
   }
