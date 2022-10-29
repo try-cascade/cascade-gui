@@ -1,7 +1,13 @@
 // import { useEffect } from "react"
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-const ServiceForm = ( ) => {
+const ServiceForm = ({ appName, envName }) => {
+  const [name, setName] = useState('')
+  const [image, setImage] = useState('')
+  const [port, setPort] = useState('')
+  const [uploadedFiles, setUploadedFiles] = useState([])
+
   const router = useRouter()
 
   function handleSubmit(e) {
@@ -9,7 +15,51 @@ const ServiceForm = ( ) => {
     router.push('/')
   }
 
-  // After this need to check user number of applications and go to other page...
+  /*
+  Payload:
+{
+  "app": "name"
+  "env": "name"
+  "service": "name"
+  "image": "path"
+  "port": "3000"
+  "type": "backend/frontend"
+  "frontFacingPath": "path"
+  "var": [
+    "key=value",
+  ]
+}
+*/
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      app: appName,
+      env: envName,
+      service: name,
+      image,
+      port,
+      type: "frontend",
+      frontFacingPath: "/"
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(body)
+    };
+
+    await fetch('http://localhost:3005/aws/environment', requestOptions)
+
+    onSubmit(true)
+  }
+
+  const handleFileUpload = (e) => {
+    console.log(e)
+  }
 
   return (
     <>
@@ -17,15 +67,19 @@ const ServiceForm = ( ) => {
       <form onSubmit={handleSubmit}>
         <label>
           What would you like to name your service?
-          <input type="text" />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <label>
           Could you provide the image link?
-          <input type="text" />
+          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
         </label>
         <label>
           Port?
-          <input type="text" />
+          <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
+        </label>
+        <label>
+          .env file
+          <input type='file' accept='.env' onChange={handleFileUpload} />
         </label>
         <input type="submit" />
       </form>

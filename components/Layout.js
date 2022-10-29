@@ -28,30 +28,14 @@ const Layout = ({ children }) => {
                 </div>
               </Link>
             </li>
-            <li>
-              <Link href="/application">
-                <div>
-                  <Image src='/../public/images/application_blue.png' alt="application button" width="50px" height="50px" />
-                  Application
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/environment">
-                <div>
-                  <Image src='/../public/images/environments_blue.png' alt="environment button" width="50px" height="50px" />
-                  Environments
-                </div>
-              </Link>
-            </li>
-            <li>
+            {/* <li>
               <Link href="/services">
                 <div>
                   <Image src='/../public/images/fargate_blue.png' alt="services button" width="50px" height="50px" />
                   Services
                 </div>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
         {children}

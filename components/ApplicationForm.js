@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-const ApplicationForm = ( { onSubmit } ) => {
-  const [name, setName] = useState('')
-
+const ApplicationForm = ( { onSubmit, appName } ) => {
+  // const [name, setName] = useState('')
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -21,14 +20,14 @@ const ApplicationForm = ( { onSubmit } ) => {
   }
 
   async function handleChange(e) {
-    await setName(e.target.value)
+    await appName[1](e.target.value)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
         What would you like your application to be called?
-        <input type="text" value={name} onChange={handleChange}/>
+        <input type="text" value={appName[0]} onChange={handleChange}/>
       </label>
       <input type="submit" />
     </form>

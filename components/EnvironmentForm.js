@@ -1,17 +1,16 @@
 import { useState } from "react"
 
-const EnvironmentForm = ( { onSubmit } ) => {
-  const [name, setName] = useState('')
+const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
   const [key, setKey] = useState('')
   const [secretKey, setSecretKey] = useState('')
   const [region, setRegion] = useState('')
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     const body = {
-      app: '',
-      env: name,
+      app: appName,
+      env: envName[0],
       accessKey: key,
       region,
       secretKey
@@ -26,7 +25,7 @@ const EnvironmentForm = ( { onSubmit } ) => {
       body: JSON.stringify(body)
     };
 
-    // await fetch('http://localhost:3005/aws/bucket', requestOptions)
+    await fetch('http://localhost:3005/aws/environment', requestOptions)
 
     onSubmit(true)
   }
@@ -39,7 +38,7 @@ const EnvironmentForm = ( { onSubmit } ) => {
     <form onSubmit={handleSubmit}>
       <label>
         What would you like to name your environment?
-        <input type="text" value={name} onChange={(e) => handleChange(e, setName)} />
+        <input type="text" value={envName[0]} onChange={(e) => handleChange(e, envName[1])} />
       </label>
       Please follow the instructions below to instrument your applications for traces with X-Ray.
       -- add instructions here --
