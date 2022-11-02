@@ -1,6 +1,6 @@
 
 // import Image from 'next/image'
-
+import { ElasticLoadBalancingV2 as ELBv2, DescribeLoadBalancersCommand } from "@aws-sdk/client-elastic-load-balancing-v2"
 import { useEffect, useState } from 'react'
 import AddServiceModal from '../components/AddServiceModal'
 import ViewServiceModal from '../components/ViewServiceModal'
@@ -12,6 +12,7 @@ export default function Home() {
   const [addService, setAddService] = useState(false)
   const [viewService, setViewService] = useState(false) // think about this scaled for 10 different services
   const [containers, setContainers] = useState([])
+  const [deployed, setDeployed] = useState(true)
 
 //   {
 //     "name": "bakery",
@@ -59,6 +60,7 @@ export default function Home() {
 
     // await fetch('http://localhost:3005/terraform/generate', requestOptions)
     await fetch('http://localhost:3005/terraform/deploy', requestOptions)
+    setDeployed(true);
   }
 
   const handleDestroy = async () => {
@@ -71,8 +73,39 @@ export default function Home() {
     };
 
     await fetch('http://localhost:3005/terraform/destroy', requestOptions)
+    setDeployed(false);
     // change button color to red
     // have a pop up to confirm destroy
+  }
+
+  // we want the user to visit cloudwatch, check if the app is up and running
+  // then we want the user to visit the site
+  // then we want the user to visit X-Ray to view traces of their first visit
+  const handleVisitSite = async () => {
+    const response = await fetch('http://localhost:3005/aws/services');
+    const { envName, region, credentials } = await response.json();
+
+    const client = new ELBv2({ region, credentials });
+    
+    const command = new DescribeLoadBalancersCommand({ Names: [`cs-${envName}-lb`]});
+    const res = await client.send(command)
+    const dnsName = res.LoadBalancers[0].DNSName;
+
+    window.open(`http://${dnsName}`, '_blank');
+  }
+
+  const handleVisitXray = async () => {
+    const response = await fetch('http://localhost:3005/aws/services');
+    const { region } = await response.json();
+
+    window.open(`https://${region}.console.aws.amazon.com/xray/home?region=${region}#/traces`, '_blank');
+  }
+
+  const handleVisitCloudWatch = async () => {
+    const response = await fetch('http://localhost:3005/aws/services');
+    const { envName, region } = await response.json();
+
+    window.open(`https://${region}.console.aws.amazon.com/cloudwatch/home?region=${region}#logsV2:log-groups/log-group/$252Fecs$252Fcs-${envName}-loggroup`, '_blank');
   }
 
   return (
@@ -86,6 +119,9 @@ export default function Home() {
           <button onClick={handleDeploy}>Deploy Stack</button>
           <button onClick={handleDestroy}>Destroy Stack</button>
           <button>View JSON</button>
+          {deployed ? <button onClick={handleVisitSite}>Visit Site</button> : null}
+          {deployed ? <button onClick={handleVisitXray}>View X-ray Traces</button> : null}
+          {deployed ? <button onClick={handleVisitCloudWatch}>View CloudWatch Logs</button> : null}
 
           <h2>Environment</h2>
           <p>add a pic here</p>
