@@ -10,18 +10,21 @@ const Welcome = () => {
   const [applicationSubmitted, setApplicationSubmitted] = useState(false)
   const [environmentSubmitted, setEnvironmentSubmitted] = useState(false)
 
+  const [appName, setAppName] = useState('')
+  const [envName, setEnvName] = useState('')
+
   useEffect(() => {
     setTimeout(() => {
       setShowHello(false)
-    }, 5000)
+    }, 0)
   })
 
   return (
     <main className={styles.main}>
       { showHello ? <p>Hello, we noticed you have no applications. Let's get started setting one up.</p> : null }
-      { !showHello && !applicationSubmitted ? <ApplicationForm onSubmit={setApplicationSubmitted}/> : null }
-      { applicationSubmitted && !environmentSubmitted ? <EnvironmentForm onSubmit={setEnvironmentSubmitted} /> : null }
-      { environmentSubmitted ? <ServiceForm /> : null}
+      { !showHello && !applicationSubmitted ? <ApplicationForm onSubmit={setApplicationSubmitted} appName={[appName, setAppName]} /> : null }
+      { applicationSubmitted && !environmentSubmitted ? <EnvironmentForm onSubmit={setEnvironmentSubmitted} appName={appName} envName={[envName, setEnvName]} /> : null }
+      { environmentSubmitted ? <ServiceForm appName={appName} envName={envName} /> : null}
     </main>
   )
 }
