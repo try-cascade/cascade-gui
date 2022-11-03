@@ -1,7 +1,9 @@
 .main {
   display: grid;
   align-items: center;
-  background-color: #cde0fe;
+  background-color: #e8defc4b;
   width: 100%;
   justify-items: center;
+  min-height: 85vh;
+  height: 100%;
 }
