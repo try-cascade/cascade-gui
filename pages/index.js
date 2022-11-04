@@ -13,11 +13,9 @@ export default function Home() {
   const [viewService, setViewService] = useState(false) // think about this scaled for 10 different services
   const [containers, setContainers] = useState([])
   const [deployed, setDeployed] = useState(true)
+  const [viewJsonModal, setViewJsonModal] = useState(false) // for view json button
 
   // env-stack (8 resources) -- use deployed
-  // - backend has a route for vpcStatus
-  //   - vpc available then default state should be true
-  //   - do we use useEffect? for initial rendering?
   const [vpc, setVpc] = useState(false)
   const [routeTable, setRouteTable] = useState(false)
   const [gateway, setGateway] = useState(false)
@@ -75,7 +73,7 @@ export default function Home() {
     getApplications()
   }, [])
 
-  const handleDeploy = async () => {
+  const handleDeploy = () => {
     // const requestOptions = {
     //   method: 'POST',
     //   headers: {
@@ -85,13 +83,13 @@ export default function Home() {
     // };
 
     // await fetch('http://localhost:3005/terraform/generate', requestOptions)
-    await streamTfData('msg', 'Creation', true); // can see data streaming on browser console
+    streamTfData('msg', 'Creation', true); // can see data streaming on browser console
     // await fetch('http://localhost:3005/terraform/deploy', requestOptions)
     // await fetch('http://localhost:3005/terraform/msg') // testing with dummy route
     setDeployed(true);
   }
 
-  const handleDestroy = async () => {
+  const handleDestroy = () => {
     // const requestOptions = {
     //   method: 'POST',
     //   headers: {
@@ -101,12 +99,15 @@ export default function Home() {
     // };
 
     // await fetch('http://localhost:3005/terraform/destroy', requestOptions)
-    await streamTfData('destroy', 'Destruction', true)
+    streamTfData('destroy', 'Destruction', false)
     setDeployed(false);
     // change button color to red
     // have a pop up to confirm destroy
   }
 
+  const handleViewJson = () => {
+    viewJsonModal ? setViewJsonModal(false) : setViewJsonModal(true)
+  }
   // we want the user to visit cloudwatch, check if the app is up and running
   // then we want the user to visit the site
   // then we want the user to visit X-Ray to view traces of their first visit
@@ -154,8 +155,6 @@ export default function Home() {
     console.log(res.Vpcs, "<--- all Vpcs")
     console.log(res.Vpcs[0].State, "<--- response from AWS") // if length === 1; if res.Vpcs[0].State === "available", then it's there
   }
-
-  // checkVpcStatus();
 
   // SSE test
   const streamTfData = async (path, action, setBool) => {
@@ -231,8 +230,12 @@ export default function Home() {
     backgroundColor: 'green'
   }
 
-
-  // streamTfData();
+  // test view json button
+  const Modal = () => {
+    return (
+      <p> test: this is a Modal! </p>
+    )
+  }
 
   return (
     <>
@@ -242,13 +245,14 @@ export default function Home() {
           <h1>Application</h1>
           <button onClick={handleDeploy}>Deploy Stack</button>
           <button onClick={handleDestroy}>Destroy Stack</button>
-          <button>View JSON</button>
+          <button onClick={handleViewJson}>View JSON</button>
+          {viewJsonModal ? <Modal/> : null }
+          {deployed ? <button onClick={handleVisitCloudWatch}>View CloudWatch Logs</button> : null}
           {deployed ? <button onClick={handleVisitSite}>Visit Site</button> : null}
           {deployed ? <button onClick={handleVisitXray}>View X-ray Traces</button> : null}
-          {deployed ? <button onClick={handleVisitCloudWatch}>View CloudWatch Logs</button> : null}
 
           <h2>Environment</h2>
-          <p>add a pic here</p>
+          <p>environment stack</p>
           <ul>
             <li style={vpc ? ready : notReady}>vpc</li>
             <li style={routeTable ? ready : notReady}>route table</li>
@@ -259,7 +263,7 @@ export default function Home() {
             <li style={routeTableAssoc1 ? ready : notReady}>route table associations 1</li>
             <li style={routeTableAssoc2 ? ready : notReady}>route table associations 2</li>
           </ul>
-
+          <p>service stack</p>
           <ul>
             <li style={logGroup ? ready : notReady}>loggroup</li>
             <li style={albTargetGroup ? ready : notReady}>alb target group</li>
