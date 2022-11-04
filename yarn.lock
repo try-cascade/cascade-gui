@@ -56,6 +56,52 @@
     "@aws-sdk/types" "3.201.0"
     "tslib" "^2.3.1"
 
+"@aws-sdk/client-ec2@^3.201.0":
+  "integrity" "sha512-l6n71rzsW3iGCFtdTQFTzMA/b/cO/GJbz2YaEfI1MywlYGl/tVhvBy45tAKgm+lvqFiDOUC2K3sG7CntwOHFxw=="
+  "resolved" "https://registry.npmjs.org/@aws-sdk/client-ec2/-/client-ec2-3.201.0.tgz"
+  "version" "3.201.0"
+  dependencies:
+    "@aws-crypto/sha256-browser" "2.0.0"
+    "@aws-crypto/sha256-js" "2.0.0"
+    "@aws-sdk/client-sts" "3.201.0"
+    "@aws-sdk/config-resolver" "3.201.0"
+    "@aws-sdk/credential-provider-node" "3.201.0"
+    "@aws-sdk/fetch-http-handler" "3.201.0"
+    "@aws-sdk/hash-node" "3.201.0"
+    "@aws-sdk/invalid-dependency" "3.201.0"
+    "@aws-sdk/middleware-content-length" "3.201.0"
+    "@aws-sdk/middleware-endpoint" "3.201.0"
+    "@aws-sdk/middleware-host-header" "3.201.0"
+    "@aws-sdk/middleware-logger" "3.201.0"
+    "@aws-sdk/middleware-recursion-detection" "3.201.0"
+    "@aws-sdk/middleware-retry" "3.201.0"
+    "@aws-sdk/middleware-sdk-ec2" "3.201.0"
+    "@aws-sdk/middleware-serde" "3.201.0"
+    "@aws-sdk/middleware-signing" "3.201.0"
+    "@aws-sdk/middleware-stack" "3.201.0"
+    "@aws-sdk/middleware-user-agent" "3.201.0"
+    "@aws-sdk/node-config-provider" "3.201.0"
+    "@aws-sdk/node-http-handler" "3.201.0"
+    "@aws-sdk/protocol-http" "3.201.0"
+    "@aws-sdk/smithy-client" "3.201.0"
+    "@aws-sdk/types" "3.201.0"
+    "@aws-sdk/url-parser" "3.201.0"
+    "@aws-sdk/util-base64-browser" "3.188.0"
+    "@aws-sdk/util-base64-node" "3.201.0"
+    "@aws-sdk/util-body-length-browser" "3.188.0"
+    "@aws-sdk/util-body-length-node" "3.201.0"
+    "@aws-sdk/util-defaults-mode-browser" "3.201.0"
+    "@aws-sdk/util-defaults-mode-node" "3.201.0"
+    "@aws-sdk/util-endpoints" "3.201.0"
+    "@aws-sdk/util-user-agent-browser" "3.201.0"
+    "@aws-sdk/util-user-agent-node" "3.201.0"
+    "@aws-sdk/util-utf8-browser" "3.188.0"
+    "@aws-sdk/util-utf8-node" "3.201.0"
+    "@aws-sdk/util-waiter" "3.201.0"
+    "fast-xml-parser" "4.0.11"
+    "tslib" "^2.3.1"
+    "uuid" "^8.3.2"
+
 "@aws-sdk/client-elastic-load-balancing-v2@^3.201.0":
   "integrity" "sha512-IF2TUT37U0qCTgjo09xfEgYIsU9JFa+o8uCqw4lS4g3jUI41hyGLrJ/n3QD2u8kKbxg7D4R/Pm34E16reLlhHQ=="
   "resolved" "https://registry.npmjs.org/@aws-sdk/client-elastic-load-balancing-v2/-/client-elastic-load-balancing-v2-3.201.0.tgz"
@@ -369,6 +415,18 @@
     "tslib" "^2.3.1"
     "uuid" "^8.3.2"
 
+"@aws-sdk/middleware-sdk-ec2@3.201.0":
+  "integrity" "sha512-bSrtkl1Q4i/FisWjPK2E7xHdbqyLmucHzYKtlSQR8bvrfYUTtDkx4nnvv9Iq/QT1isolf+FSpxMvzzoDVVgj2A=="
+  "resolved" "https://registry.npmjs.org/@aws-sdk/middleware-sdk-ec2/-/middleware-sdk-ec2-3.201.0.tgz"
+  "version" "3.201.0"
+  dependencies:
+    "@aws-sdk/middleware-endpoint" "3.201.0"
+    "@aws-sdk/protocol-http" "3.201.0"
+    "@aws-sdk/signature-v4" "3.201.0"
+    "@aws-sdk/types" "3.201.0"
+    "@aws-sdk/util-format-url" "3.201.0"
+    "tslib" "^2.3.1"
+
 "@aws-sdk/middleware-sdk-sts@3.201.0":
   "integrity" "sha512-clZuXcoN0mAP4JH5C6pW5+0tdF25+fpFJqE7GNRjjH/NYNk6ImVI0Kq2espEWwVBuaS0/chTDK3b+pK8YOWdhw=="
   "resolved" "https://registry.npmjs.org/@aws-sdk/middleware-sdk-sts/-/middleware-sdk-sts-3.201.0.tgz"
@@ -590,6 +648,15 @@
   "resolved" "https://registry.npmjs.org/@aws-sdk/util-endpoints/-/util-endpoints-3.201.0.tgz"
   "version" "3.201.0"
   dependencies:
+    "@aws-sdk/types" "3.201.0"
+    "tslib" "^2.3.1"
+
+"@aws-sdk/util-format-url@3.201.0":
+  "integrity" "sha512-hoGPnhB7qRbTMf0o1vUtG+q1Bu7YTOZEt8yMA9tjC6b4Je3ZWGu4+Tx+d6zUTPt06n37Ek7oDIsU8KG/hcRYew=="
+  "resolved" "https://registry.npmjs.org/@aws-sdk/util-format-url/-/util-format-url-3.201.0.tgz"
+  "version" "3.201.0"
+  dependencies:
+    "@aws-sdk/querystring-builder" "3.201.0"
     "@aws-sdk/types" "3.201.0"
     "tslib" "^2.3.1"
 
@@ -1315,6 +1382,11 @@
   "integrity" "sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g=="
   "resolved" "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
   "version" "2.0.3"
+
+"eventsource@^2.0.2":
+  "integrity" "sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA=="
+  "resolved" "https://registry.npmjs.org/eventsource/-/eventsource-2.0.2.tgz"
+  "version" "2.0.2"
 
 "fast-deep-equal@^3.1.1", "fast-deep-equal@^3.1.3":
   "integrity" "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
