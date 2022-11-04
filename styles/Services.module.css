@@ -4,6 +4,12 @@
   background-color: #e8defc4b;
   width: 100%;
   justify-items: center;
-  min-height: 85vh;
-  height: 100%;
+}
+
+.ready {
+  background-color: green;
+}
+
+.not-ready {
+  background-color: red;
 }
