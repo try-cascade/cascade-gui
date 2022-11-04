@@ -5,3 +5,11 @@
   width: 100%;
   justify-items: center;
 }
+
+.ready {
+  background-color: green;
+}
+
+.not-ready {
+  background-color: red;
+}
