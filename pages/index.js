@@ -4,8 +4,6 @@ import EventSource from 'eventsource';
 // import { ElasticLoadBalancingV2 as ELBv2, DescribeLoadBalancersCommand } from "@aws-sdk/client-elastic-load-balancing-v2"
 // import { EC2Client, DescribeVpcsCommand } from "@aws-sdk/client-ec2";
 import { useEffect, useState } from 'react'
-import AddServiceModal from '../components/AddServiceModal'
-import ViewServiceModal from '../components/ViewServiceModal'
 import { useRouter } from 'next/router'
 import styles from '../styles/Services.module.css'
 
@@ -238,8 +236,6 @@ export default function Home() {
 
   return (
     <>
-      {addService ? <AddServiceModal onClick={setAddService}/> : null}
-      {viewService ? <ViewServiceModal onClick={setViewService}/> : null}
       <main className={styles.main}>
 
         <div className={styles.content}>
