@@ -13,6 +13,7 @@ export default function Home() {
   const [viewService, setViewService] = useState(false) // think about this scaled for 10 different services
   const [containers, setContainers] = useState([])
   const [deployed, setDeployed] = useState(true)
+  const [viewJsonModal, setViewJsonModal] = useState(false) // for view json button
 
   // env-stack (8 resources) -- use deployed
   const [vpc, setVpc] = useState(false)
@@ -104,6 +105,9 @@ export default function Home() {
     // have a pop up to confirm destroy
   }
 
+  const handleViewJson = () => {
+    viewJsonModal ? setViewJsonModal(false) : setViewJsonModal(true)
+  }
   // we want the user to visit cloudwatch, check if the app is up and running
   // then we want the user to visit the site
   // then we want the user to visit X-Ray to view traces of their first visit
@@ -226,6 +230,13 @@ export default function Home() {
     backgroundColor: 'green'
   }
 
+  // test view json button
+  const Modal = () => {
+    return (
+      <p> test: this is a Modal! </p>
+    )
+  }
+
   return (
     <>
       <main className={styles.main}>
@@ -234,7 +245,8 @@ export default function Home() {
           <h1>Application</h1>
           <button onClick={handleDeploy}>Deploy Stack</button>
           <button onClick={handleDestroy}>Destroy Stack</button>
-          <button>View JSON</button>
+          <button onClick={handleViewJson}>View JSON</button>
+          {viewJsonModal ? <Modal/> : null }
           {deployed ? <button onClick={handleVisitCloudWatch}>View CloudWatch Logs</button> : null}
           {deployed ? <button onClick={handleVisitSite}>Visit Site</button> : null}
           {deployed ? <button onClick={handleVisitXray}>View X-ray Traces</button> : null}
