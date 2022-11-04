@@ -14,8 +14,8 @@ const Layout = ({ children }) => {
 
       <header className={styles.headers}>
         <div className={styles.logoContainer}>
-          <div>
-            <Image src="/images/logo.png" alt="cascade logo" width="456.4px" height="76.8px"/>
+          <div className={styles.logo}>
+            {/* <Image src="/images/logo.png" alt="cascade logo" width="456.4px" height="80%"/> */}
           </div>
         </div>
       </header>
@@ -25,7 +25,6 @@ const Layout = ({ children }) => {
       <footer>
         <div className={styles.logoBox}>
          <div className={styles.circleDiv}>
-            {/* <Image src="/cascade.png" alt="cascade logo" width="100px" height="100px"/>` */}
           </div>
         </div>
       </footer>

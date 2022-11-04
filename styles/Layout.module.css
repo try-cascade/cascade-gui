@@ -1,20 +1,32 @@
 .headers {
   background-color: #3d1170;
   width: 100%;
-  height: 200px;
+  height: 10vh;
+  display: flex;
+  align-items: center;
 }
 
 .logoContainer {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-left: 60px;
+  padding: 15px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .main {
   display: flex;
+  min-height: 86vh;
 }
 
 .logoBox {
@@ -25,11 +37,11 @@
 }
 
 .circleDiv {
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border-radius: 100px;
   background-image: url('/cascade.png');
-  background-size: 50px;
+  background-size: 25px;
 }
 
 

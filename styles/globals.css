@@ -27,9 +27,7 @@ ul {
 }
 
 footer {
-  /* background-color: #e8defc4b; */
-  position: absolute;
-  bottom: 0;
+  background-color: #e8defc4b;
   width: 100%;
 }
 
