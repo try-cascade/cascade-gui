@@ -8,6 +8,14 @@
   color: #3d1170;
 }
 
+.link {
+  color: #6077ff;
+}
+
+.link:hover {
+  color: #cc75ff;
+}
+
 .p {
   margin: 0;
 }
@@ -30,6 +38,29 @@
 .form {
   display: flex;
   flex-direction: column;
+}
+
+.form.credentials {
+  border: 1px solid #6077ff ;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.form.credentials input {
+  margin-left: 10px;
+  float: right;
+}
+
+.form.credentials .button {
+  margin-top: 10px;
+  align-self: flex-end;
+  width: 20%;
+}
+
+.req {
+  color: red;
 }
 
 .label {
