@@ -1,7 +1,7 @@
 .mainContent {
   display: grid;
   justify-items: center;
-  margin-top: -30%;
+  align-self: start;
 }
 
 .h1, .p {
