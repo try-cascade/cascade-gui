@@ -1,6 +1,7 @@
 // import { useEffect } from "react"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import styles from '../styles/Setup.module.css'
 
 const ServiceForm = ({ appName, envName }) => {
   const [name, setName] = useState('')
@@ -61,26 +62,33 @@ const ServiceForm = ({ appName, envName }) => {
 
   return (
     <>
-      <p>Your environment is being created, let's finish up by adding a container.</p>
-      <form onSubmit={handleSubmit}>
+      <div className={styles.progress}>
+        <span className={styles.dot}>1</span>
+        <span>- - - - -</span>
+        <span className={styles.dot}>2</span>
+        <span>- - - - -</span>
+        <span className={`${styles.dot} ${styles.selected}`}>3</span>
+      </div>
+      <h1 className={styles.h1}>Add Containers</h1>
+      <form onSubmit={handleSubmit} className={`${styles.form} ${styles.containers}`}>
         <label>
-          What would you like to name your container?
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          Container Name<span className={styles.req}>*</span>:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
         </label>
         <label>
-          Could you provide the image link?
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
+          Image Link<span className={styles.req}>*</span>:
+          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
         </label>
         <label>
-          Port?
-          <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
+          Port<span className={styles.req}>*</span>:
+          <input type="text" value={port} onChange={(e) => setPort(e.target.value)} required />
         </label>
-        <button onClick={handleAddEnvClick}>Add env variables</button>
+        {/* <button className={styles.button} onClick={handleAddEnvClick}>Add env variables</button> */}
         <label>
-          Could you provide your env key value pairs formatted like: "Key=Value, Key=Value"
-          <textarea onChange={(e) => setEnvVars(e.target.value)}>{envVars}</textarea>
+          Environment Variables:
+          <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... ">{envVars}</textarea>
         </label>
-        <input type="submit" />
+        <input className={styles.button} type="submit" />
       </form>
     </>
   )
