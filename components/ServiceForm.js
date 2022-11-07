@@ -27,16 +27,28 @@ const ServiceForm = ({ appName, envName }) => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const body = {
+    // 1. body should be an array of one object
+    const body = [{
       app: appName,
       env: envName,
-      service: name,
-      image,
-      port,
+      service: "service", // change back to `name`
+      image: "image", // change back to image
+      port: 3003, // change back to port
       type: "frontend",
       frontFacingPath: "/",
-      var: envVars.split(", ")
-    }
+      // var: envVars.split(", ")
+      var: ["key-val", "key2-val2"]
+    },
+    {
+      app: appName,
+      env: envName,
+      service: "service2", // change back to `name`
+      image: "image2", // change back to image
+      port: 3013, // change back to port
+      type: "frontend",
+      frontFacingPath: "/",
+      // var: envVars.split(", ")
+    }]
 
     const requestOptions = {
       method: 'POST',
