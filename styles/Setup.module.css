@@ -92,5 +92,11 @@
   border-radius: 10px;
   cursor: pointer;
   width: 40%;
+  text-align: center;
   align-self: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
 }
