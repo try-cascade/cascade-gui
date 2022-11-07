@@ -1,11 +1,27 @@
 import styles from '../styles/Setup.module.css'
 import { useState } from 'react'
 
-export function ContainerInput() {
+export function ContainerInput({ setBodyList, bodyArr, app, env }) {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [port, setPort] = useState('')
   const [envVars, setEnvVars] = useState('')
+  
+  const currentBody = {
+    app,
+    env,
+    service: name,
+    image,
+    port,
+    type: "frontend",
+    frontFacingPath: "/",
+    var: envVars.split(", ")
+  }
+
+  const handleClickSave = (e) => {
+    e.preventDefault()
+    setBodyList(bodyArr.slice(0, -1).concat(currentBody))
+  }
 
   return (
     <div className={`${styles.form} ${styles.containers}`}>
@@ -25,6 +41,7 @@ export function ContainerInput() {
         Environment Variables:
         <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... ">{envVars}</textarea>
       </label>
+      <button onClick={handleClickSave}>Save</button>
     </div>
   )
 }

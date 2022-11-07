@@ -5,10 +5,11 @@ import styles from '../styles/Setup.module.css'
 import ContainerInput from './ContainerInput'
 
 const ServiceForm = ({ appName, envName }) => {
-  const [counter, setCounter] = useState(1);
-
+  // const [counter, setCounter] = useState(1);
+  const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
+  // for handling input change, setBodyList([...bodyList])
+  // for handling adding list, setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
   const router = useRouter()
-
   /*
   Payload:
 {
@@ -27,28 +28,20 @@ const ServiceForm = ({ appName, envName }) => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    // 1. body should be an array of one object
-    const body = [{
-      app: appName,
-      env: envName,
-      service: "service", // change back to `name`
-      image: "image", // change back to image
-      port: 3003, // change back to port
-      type: "frontend",
-      frontFacingPath: "/",
-      // var: envVars.split(", ")
-      var: ["key-val", "key2-val2"]
-    },
+    // const body = []
+    /*
     {
       app: appName,
       env: envName,
-      service: "service2", // change back to `name`
-      image: "image2", // change back to image
-      port: 3013, // change back to port
+      service: name,
+      image,
+      port,
       type: "frontend",
       frontFacingPath: "/",
-      // var: envVars.split(", ")
-    }]
+      var: envVars.split(", ")
+    }
+    */
+
 
     const requestOptions = {
       method: 'POST',
@@ -56,7 +49,7 @@ const ServiceForm = ({ appName, envName }) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(bodyList)
     };
 
     await fetch('http://localhost:3005/aws/service', requestOptions)
@@ -65,13 +58,18 @@ const ServiceForm = ({ appName, envName }) => {
   }
 
   function handleClickPlus() {
-    setCounter(counter + 1);
+    setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
+    // setCounter(counter + 1);
   }
 
   function handleClickMinus() {
-    if (counter > 1) {
-      setCounter(counter - 1);
+    const list = [...bodyList];
+    if (bodyList.length > 1) {
+      setBodyList(list.slice(0, -1));
     }
+    // if (counter > 1) {
+    //   setCounter(counter - 1);
+    // }
   }
 
   return (
@@ -85,7 +83,7 @@ const ServiceForm = ({ appName, envName }) => {
       </div>
       <h1 className={styles.h1}>Add Containers</h1>
       <form onSubmit={handleSubmit} className={`${styles.form}`}>
-        {Array.from(Array(counter)).map((_, idx) => <ContainerInput key={idx} />)}
+        {bodyList.map((_, idx) => <ContainerInput key={idx} app={appName} env={envName} bodyArr={bodyList} setBodyList={setBodyList}/>)}
         <div>
           <input onClick={handleClickPlus} className={styles.button} type="button" value="+" />
           <input onClick={handleClickMinus} className={styles.button} type="button" value="-" />
