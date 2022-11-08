@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import Button from "./Button"
 
 const DashboardContainers = () => {
   const [containers, setContainers] = useState([])
@@ -14,6 +15,17 @@ const DashboardContainers = () => {
 
     getContainers()
   }, [])
+
+  if (containers.length === 0) {
+    return (
+      <div className='containers'>
+        <h2>Containers</h2>
+        <div className='buttons'>
+          <Button onClick={() => setAddService(!addService)} text="Add Container" />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className='containers'>

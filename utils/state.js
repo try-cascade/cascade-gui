@@ -59,6 +59,8 @@ export const reducer = (state, action) => {
       return { post: initialState.post, deployed: false }
     case "vpc":
       return { ...state, post: { ...state.post, environment: { ...state.environment, vpc: action.payload} }}
+    case "route table":
+      return { ...state, post: { ...state.post, environment: { ...state.environment, routeTable: action.payload} }}
     default:
       return state
   }

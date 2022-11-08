@@ -6,8 +6,8 @@ import DashboardHeader from '../components/DashboardHeader';
 import DashboardEnv from '../components/DashboardEnv';
 import DashboardContainers from '../components/DashboardContainers';
 
-import { reducer, initialState } from '../utilis/state.js'
-import { streamTfData } from '../utilis/event';
+import { reducer, initialState } from '../utils/state.js'
+import { streamTfData } from '../utils/event';
 
 // thinking about a setReducer
 export default function Home() {
