@@ -5,10 +5,11 @@ import styles from '../styles/Setup.module.css'
 import ContainerInput from './ContainerInput'
 
 const ServiceForm = ({ appName, envName }) => {
-  const [counter, setCounter] = useState(1);
-
+  // const [counter, setCounter] = useState(1);
+  const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
+  // for handling input change, setBodyList([...bodyList])
+  // for handling adding list, setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
   const router = useRouter()
-
   /*
   Payload:
 {
@@ -27,7 +28,9 @@ const ServiceForm = ({ appName, envName }) => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const body = {
+    // const body = []
+    /*
+    {
       app: appName,
       env: envName,
       service: name,
@@ -37,6 +40,8 @@ const ServiceForm = ({ appName, envName }) => {
       frontFacingPath: "/",
       var: envVars.split(", ")
     }
+    */
+
 
     const requestOptions = {
       method: 'POST',
@@ -44,7 +49,7 @@ const ServiceForm = ({ appName, envName }) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(bodyList)
     };
 
     await fetch('http://localhost:3005/aws/service', requestOptions)
@@ -53,13 +58,18 @@ const ServiceForm = ({ appName, envName }) => {
   }
 
   function handleClickPlus() {
-    setCounter(counter + 1);
+    setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
+    // setCounter(counter + 1);
   }
 
   function handleClickMinus() {
-    if (counter > 1) {
-      setCounter(counter - 1);
+    const list = [...bodyList];
+    if (bodyList.length > 1) {
+      setBodyList(list.slice(0, -1));
     }
+    // if (counter > 1) {
+    //   setCounter(counter - 1);
+    // }
   }
 
   return (
@@ -73,7 +83,7 @@ const ServiceForm = ({ appName, envName }) => {
       </div>
       <h1 className={styles.h1}>Add Containers</h1>
       <form onSubmit={handleSubmit} className={`${styles.form}`}>
-        {Array.from(Array(counter)).map((_, idx) => <ContainerInput key={idx} />)}
+        {bodyList.map((_, idx) => <ContainerInput key={idx} app={appName} env={envName} bodyArr={bodyList} setBodyList={setBodyList}/>)}
         <div>
           <input onClick={handleClickPlus} className={styles.button} type="button" value="+" />
           <input onClick={handleClickMinus} className={styles.button} type="button" value="-" />
