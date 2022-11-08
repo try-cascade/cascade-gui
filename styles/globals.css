@@ -174,3 +174,21 @@ dd {
 }
 
 
+.stacks .env {
+  grid-area: env;
+}
+
+
+.stacks .service {
+  grid-area: service;
+}
+
+dl div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+dd {
+  margin-inline-start: 0;
+}

@@ -1,15 +1,15 @@
 // import { useEffect } from "react"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import styles from '../styles/Setup.module.css'
+import ContainerInput from './ContainerInput'
 
 const ServiceForm = ({ appName, envName }) => {
-  const [name, setName] = useState('')
-  const [image, setImage] = useState('')
-  const [port, setPort] = useState('')
-  const [envVars, setEnvVars] = useState('')
-
+  // const [counter, setCounter] = useState(1);
+  const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
+  // for handling input change, setBodyList([...bodyList])
+  // for handling adding list, setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
   const router = useRouter()
-
   /*
   Payload:
 {
@@ -28,7 +28,9 @@ const ServiceForm = ({ appName, envName }) => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const body = {
+    // const body = []
+    /*
+    {
       app: appName,
       env: envName,
       service: name,
@@ -38,6 +40,8 @@ const ServiceForm = ({ appName, envName }) => {
       frontFacingPath: "/",
       var: envVars.split(", ")
     }
+    */
+
 
     const requestOptions = {
       method: 'POST',
@@ -45,7 +49,7 @@ const ServiceForm = ({ appName, envName }) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(bodyList)
     };
 
     await fetch('http://localhost:3005/aws/service', requestOptions)
@@ -53,34 +57,38 @@ const ServiceForm = ({ appName, envName }) => {
     router.push('/')
   }
 
-  const handleAddEnvClick = (e) => {
-    e.preventDefault()
+  function handleClickPlus() {
+    setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
+    // setCounter(counter + 1);
+  }
 
-    setEnvInputs(envInputs++)
+  function handleClickMinus() {
+    const list = [...bodyList];
+    if (bodyList.length > 1) {
+      setBodyList(list.slice(0, -1));
+    }
+    // if (counter > 1) {
+    //   setCounter(counter - 1);
+    // }
   }
 
   return (
     <>
-      <p>Your environment is being created, let's finish up by adding a container.</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          What would you like to name your container?
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label>
-          Could you provide the image link?
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
-        </label>
-        <label>
-          Port?
-          <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
-        </label>
-        <button onClick={handleAddEnvClick}>Add env variables</button>
-        <label>
-          Could you provide your env key value pairs formatted like: "Key=Value, Key=Value"
-          <textarea onChange={(e) => setEnvVars(e.target.value)}>{envVars}</textarea>
-        </label>
-        <input type="submit" />
+      <div className={styles.progress}>
+        <span className={styles.dot}>1</span>
+        <span>- - - - -</span>
+        <span className={styles.dot}>2</span>
+        <span>- - - - -</span>
+        <span className={`${styles.dot} ${styles.selected}`}>3</span>
+      </div>
+      <h1 className={styles.h1}>Add Containers</h1>
+      <form onSubmit={handleSubmit} className={`${styles.form}`}>
+        {bodyList.map((_, idx) => <ContainerInput key={idx} app={appName} env={envName} bodyArr={bodyList} setBodyList={setBodyList}/>)}
+        <div>
+          <input onClick={handleClickPlus} className={styles.button} type="button" value="+" />
+          <input onClick={handleClickMinus} className={styles.button} type="button" value="-" />
+          <input className={styles.button} type="submit" />
+        </div>
       </form>
     </>
   )
