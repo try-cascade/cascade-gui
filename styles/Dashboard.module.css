@@ -9,7 +9,7 @@
   align-items: center;
   flex-direction: column;
   padding: 60px;
-  padding-bottom: 0;
+  padding-bottom: 25px;
 }
 
 /* Buttons */
@@ -82,11 +82,13 @@
 }
 
 .envContainer {
-  width: 75%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 50px;
+  background-color: #3d1170;
+  color: white;
 }
 
 
