@@ -1,12 +1,11 @@
 // import { useEffect } from "react"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import styles from '../styles/Setup.module.css'
+import ContainerInput from './ContainerInput'
 
 const ServiceForm = ({ appName, envName }) => {
-  const [name, setName] = useState('')
-  const [image, setImage] = useState('')
-  const [port, setPort] = useState('')
-  const [envVars, setEnvVars] = useState('')
+  const [counter, setCounter] = useState(1);
 
   const router = useRouter()
 
@@ -53,34 +52,33 @@ const ServiceForm = ({ appName, envName }) => {
     router.push('/')
   }
 
-  const handleAddEnvClick = (e) => {
-    e.preventDefault()
+  function handleClickPlus() {
+    setCounter(counter + 1);
+  }
 
-    setEnvInputs(envInputs++)
+  function handleClickMinus() {
+    if (counter > 1) {
+      setCounter(counter - 1);
+    }
   }
 
   return (
     <>
-      <p>Your environment is being created, let's finish up by adding a container.</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          What would you like to name your container?
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label>
-          Could you provide the image link?
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
-        </label>
-        <label>
-          Port?
-          <input type="text" value={port} onChange={(e) => setPort(e.target.value)}/>
-        </label>
-        <button onClick={handleAddEnvClick}>Add env variables</button>
-        <label>
-          Could you provide your env key value pairs formatted like: "Key=Value, Key=Value"
-          <textarea onChange={(e) => setEnvVars(e.target.value)}>{envVars}</textarea>
-        </label>
-        <input type="submit" />
+      <div className={styles.progress}>
+        <span className={styles.dot}>1</span>
+        <span>- - - - -</span>
+        <span className={styles.dot}>2</span>
+        <span>- - - - -</span>
+        <span className={`${styles.dot} ${styles.selected}`}>3</span>
+      </div>
+      <h1 className={styles.h1}>Add Containers</h1>
+      <form onSubmit={handleSubmit} className={`${styles.form}`}>
+        {Array.from(Array(counter)).map((_, idx) => <ContainerInput key={idx} />)}
+        <div>
+          <input onClick={handleClickPlus} className={styles.button} type="button" value="+" />
+          <input onClick={handleClickMinus} className={styles.button} type="button" value="-" />
+          <input className={styles.button} type="submit" />
+        </div>
       </form>
     </>
   )

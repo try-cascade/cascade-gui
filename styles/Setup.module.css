@@ -40,7 +40,7 @@
   flex-direction: column;
 }
 
-.form.credentials {
+.form.credentials, .form.containers {
   border: 1px solid #6077ff ;
   display: flex;
   flex-direction: column;
@@ -48,12 +48,16 @@
   margin-top: 20px;
 }
 
-.form.credentials input {
+.form.containers {
+  align-self: flex-start;
+}
+
+.form.credentials input, .form.containers input, .form.containers textarea {
   margin-left: 10px;
   float: right;
 }
 
-.form.credentials .button {
+.form.credentials .button,  .form.containers .button{
   margin-top: 10px;
   align-self: flex-end;
   width: 20%;
@@ -88,5 +92,7 @@
   border-radius: 10px;
   cursor: pointer;
   width: 40%;
+  text-align: center;
   align-self: center;
 }
+
