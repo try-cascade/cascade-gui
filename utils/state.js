@@ -11,7 +11,7 @@ export const initialState = {
       routeTableAssoc1: "loading",
       routeTableAssoc2: "loading",
     },
-    services: {
+    service: {
       logGroup: "loading",
       albTargetGroup: "loading",
       taskRole: "loading",
@@ -30,24 +30,24 @@ export const initialState = {
 export const reducer = (state, action) => {
   switch(action.type) {
     case "exists":
-      let post = {environment: {}, services: {}}
+      let post = {environment: {}, service: {}}
       Object.keys(state.post.environment).forEach(key => {
         post.environment[key] = "check"
       })
-      Object.keys(state.post.services).forEach(key => {
-        post.services[key] = "check"
+      Object.keys(state.post.service).forEach(key => {
+        post.service[key] = "check"
       })
       return {
         deployed: true,
         post
       }
     case "not yet created":
-      post = {environment: {}, services: {}}
+      post = {environment: {}, service: {}}
       Object.keys(state.post.environment).forEach(key => {
         post.environment[key] = "x"
       })
-      Object.keys(state.post.services).forEach(key => {
-        post.services[key] = "x"
+      Object.keys(state.post.service).forEach(key => {
+        post.service[key] = "x"
       })
       return {
         deployed: false,
@@ -58,9 +58,9 @@ export const reducer = (state, action) => {
     case "destroy":
       return { post: initialState.post, deployed: false }
     case "vpc":
-      return { ...state, post: { ...state.post, environment: { ...state.environment, vpc: action.payload} }}
+      return { ...state, post: { ...state.post, environment: { ...state.post.environment, vpc: action.payload} }}
     case "route table":
-      return { ...state, post: { ...state.post, environment: { ...state.environment, routeTable: action.payload} }}
+      return { ...state, post: { ...state.post, environment: { ...state.post.environment, routeTable: action.payload} }}
     default:
       return state
   }
