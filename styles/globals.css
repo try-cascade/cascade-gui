@@ -221,7 +221,7 @@ dd {
     "t t . . . a"
     "c c c c c c"
     ". . . . b b";
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 4fr .2fr;
 }
 
 .json .tabs {
@@ -242,7 +242,9 @@ dd {
   background-color: white;
   padding: 40px;
   margin-bottom: 20px;
-  border-radius: 5px 30px 30px 30px;
+  border-radius: 0 30px 30px 30px;
+  overflow: scroll;
+  border-bottom: 40px solid white;
 }
 
 .json .btns {
@@ -272,4 +274,9 @@ dd {
 
 .tabs li:first-child {
   margin: 0;
+}
+
+.tabs li.selected {
+  background-color: white;
+  color: #3d1170;
 }

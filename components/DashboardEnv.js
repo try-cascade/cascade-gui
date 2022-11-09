@@ -1,14 +1,6 @@
 import styles from '../styles/Dashboard.module.css'
 
 const DashboardEnv = ({ state }) => {
-   const notReady = {
-      backgroundColor: 'red'
-    }
-
-    const ready = {
-      backgroundColor: 'green'
-    }
-
   return (
     <div className={styles.envDetails}>
       <dl className={styles.envContainer}>
