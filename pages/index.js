@@ -5,6 +5,7 @@ import styles from '../styles/Dashboard.module.css'
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardEnv from '../components/DashboardEnv';
 import DashboardContainers from '../components/DashboardContainers';
+import JsonModal from '../components/JsonModal';
 
 import { reducer, initialState } from '../utils/state.js'
 import { streamTfData } from '../utils/event';
@@ -61,20 +62,11 @@ export default function Home() {
     setViewJsonModal(!viewJsonModal)
   }
 
-
-
-  // test view json button
-  const Modal = () => {
-    return (
-      <p> test: this is a Modal! </p>
-    )
-  }
-
   return (
     <>
-      {viewJsonModal ? <Modal/> : null }
+      {viewJsonModal ? <JsonModal onViewJSON={handleViewJSON}/> : null }
       <main className={styles.main}>
-        <DashboardHeader onViewJson={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
+        <DashboardHeader onViewJSON={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
         <DashboardEnv state={state}/>
         <DashboardContainers />
       </main>

@@ -3,7 +3,6 @@ import styles from '../styles/Dashboard.module.css'
 import { useState } from "react"
 
 const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) => {
-
   const handleVisitCloudWatch = async () => {
     const response = await fetch('http://localhost:3005/aws/services');
     const { envName, region } = await response.json();
@@ -34,7 +33,7 @@ const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) 
       <div className={styles.buttons}>
         <Button text="Deploy Stack" onClick={handleDeploy}/>
         <Button text="Destroy Stack" onClick={handleDestroy} color={styles.destroy}/>
-        <Button text="View JSON" onClick={onViewJSON}/>
+        <Button text="View JSON" onClick={onViewJSON} />
         {deployed ? <Button text="View CloudWatch Logs" onClick={handleVisitCloudWatch} /> : null}
         {deployed ? <Button text="Visit Site" onClick={handleVisitSite} /> : null}
         {deployed ? <Button text="View X-ray Traces" onClick={handleVisitXray} /> : null}
