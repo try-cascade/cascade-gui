@@ -16,12 +16,12 @@ export default function Home() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleDeploy = () => {
-    streamTfData('msg', 'Creation', true);
+    streamTfData('msg', 'Creation', true, dispatch);
     dispatch({type: "deploy"})
   }
 
   const handleDestroy = () => {
-    streamTfData('destroy', 'Destruction', false)
+    streamTfData('destroy', 'Destruction', false, dispatch)
     dispatch({type: "destroy"})
   }
 
@@ -55,7 +55,7 @@ export default function Home() {
     }
 
     checkVpcStatus()
-  })
+  }, [])
 
   const handleViewJSON = () => {
     setViewJsonModal(!viewJsonModal)

@@ -8,7 +8,7 @@ const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) 
     const response = await fetch('http://localhost:3005/aws/services');
     const { envName, region } = await response.json();
 
-    window.open(`https://${region}.console.aws.amazon.com/cloudwatch/home?region=${region}#logsV2:log-groups/log-group/$252Fecs$252Fcs-${envName}-loggroup`, '_blank');
+    window.open(`https://${region}.console.aws.amazon.com/cloudwatch/home?region=${region}#logsV2:log-groups/log-group/ecs$252Fcs-${envName}-loggroup`, '_blank');
   }
 
   const handleVisitSite = async () => {
