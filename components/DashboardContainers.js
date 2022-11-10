@@ -34,7 +34,7 @@ const DashboardContainers = ({ onClick }) => {
     <div className='containers'>
       <h2>Containers</h2>
       <div className='buttons'>
-        <Button onClick={() => setAddService(!addService)} text="Add Container" />
+        <Button onClick={onClick} text="Add Container" />
 
         {/* <input type='text' value='search' /> */}
       </div>
