@@ -10,11 +10,11 @@ const DashboardEnv = ({ state }) => {
         </div>
         <div>
           <dt><h3>Deployment Status</h3></dt>
-          <dd>Status</dd>
+          <dd>{state.deployedState}</dd>
         </div>
         <div>
           <dt><h3>Last Updated</h3></dt>
-          <dd>Date</dd>
+          <dd>{state.time}</dd>
         </div>
       </dl>
       <div className="stacks">

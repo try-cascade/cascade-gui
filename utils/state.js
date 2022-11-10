@@ -1,5 +1,6 @@
 export const initialState = {
   deployed: undefined,
+  deployedState: undefined,
   post: {
     environment: {
       vpc: "loading",
@@ -42,6 +43,8 @@ export const reducer = (state, action) => {
       })
       return {
         deployed: true,
+        deployedState: "Deployed",
+        time: new Date().toUTCString(),
         post
       }
     case "not yet created":
@@ -54,12 +57,14 @@ export const reducer = (state, action) => {
       })
       return {
         deployed: false,
+        deployedState: "Not Deployed",
+        time: "--",
         post
       }
     case "deploy":
-      return { post: initialState.post, deployed: true }
+      return { post: initialState.post, deployed: true, deployedState: "Deploying", time: new Date().toUTCString() }
     case "destroy":
-      return { post: initialState.post, deployed: false }
+      return { post: initialState.post, deployed: false, deployedState: "Destroying", time: new Date().toUTCString() }
     case "vpc":
       return { ...state, post: { ...state.post, environment: { ...state.post.environment, vpc: className} }}
     case "route table":
