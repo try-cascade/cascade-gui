@@ -34,34 +34,32 @@ const DashboardContainers = ({ onClick }) => {
     <div className='containers'>
       <h2>Containers</h2>
       <div className='buttons'>
-        <button onClick={onClick}>Add Container</button>
-        <button>Delete Container</button>
+        <Button onClick={() => setAddService(!addService)} text="Add Container" />
 
-        <input type='text' value='search' />
+        {/* <input type='text' value='search' /> */}
       </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Image</th>
-              <th>Port</th>
-            </tr>
-          </thead>
-          <tbody>
-            {containers.map(container => {
-              return (
-                <tr key={container.name}>
-                <td><input type="checkbox" id={container.name} name={container.name} /></td>
-                  <td>{container.name}</td>
-                  <td>{container.image}</td>
-                  <td>{container.port}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+      <div className="container-details">
+        <ul>
+          {containers.map(container => {
+            return (
+              <li key={container.name}>
+                <div>
+                  <dt>Name</dt>
+                  <dd>{container.name}</dd>
+                </div>
+                <div>
+                  <dt>Image</dt>
+                  <dd>{container.image}</dd>
+                </div>
+                <div>
+                  <dt>Port</dt>
+                  <dd>{container.port}</dd>
+                </div>
+                <Button onClick={() => 0} text="trash"></Button>
+              </li>
+            )
+          })}
+        </ul>
         <div>
         </div>
       </div>

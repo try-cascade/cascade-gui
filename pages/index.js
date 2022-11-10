@@ -5,6 +5,7 @@ import styles from '../styles/Dashboard.module.css'
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardEnv from '../components/DashboardEnv';
 import DashboardContainers from '../components/DashboardContainers';
+import JsonModal from '../components/JsonModal';
 
 import { reducer, initialState } from '../utils/state.js'
 import { streamTfData } from '../utils/event';
@@ -125,33 +126,17 @@ export default function Home() {
     setViewJsonModal(!viewJsonModal)
   }
 
-
   const handleViewAddContainer = () => {
     setViewAddContainerModal(!viewAddContainerModal)
   }
-
-  // test view json button
-  const Modal = () => {
-    return (
-      <p> test: this is a Modal! </p>
-    )
-  }
-
-  // when the user wants to add a container,
-  // we get the container body info from the user as an object
-  // upon submission, the object (body) is sent along a POST request to the /service route, which calls addServiceToBucket
-  // we probably need a new aws route (ex. /add-container) that gets the object, modifies the .json, and if there's a valid `var` values, creates a folder named `containerName` w/ a .env file 
-  // 1) we need to push this object to the .json's "containers" array
-  // 2) we need to create a folder called `containerName` and put the .env file there if `var` array has string values
-  
-  
+ 
 
   return (
     <>
-      {viewJsonModal ? <Modal/> : null }
+      {viewJsonModal ? <JsonModal onViewJSON={handleViewJSON}/> : null }
       {viewAddContainerModal ? <AddContainerModal /> : null }
       <main className={styles.main}>
-        <DashboardHeader onViewJson={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
+        <DashboardHeader onViewJSON={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
         <DashboardEnv state={state}/>
         <DashboardContainers onClick={handleViewAddContainer}/>
       </main>
