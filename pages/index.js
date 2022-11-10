@@ -20,6 +20,7 @@ export default function Home() {
   const [viewJsonModal, setViewJsonModal] = useState(false) // for view json button
   const [viewAddContainerModal, setViewAddContainerModal] = useState(false) // for add container button
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [envName, setEnvName] = useState('')
 
   const handleDeploy = () => {
     streamTfData('msg', 'Creation', true, dispatch);
@@ -64,6 +65,18 @@ export default function Home() {
     checkVpcStatus()
   }, [])
 
+  // set envName
+  useEffect(() => {
+    const getEnvName = async () => {
+      const response = await fetch('http://localhost:3005/aws/services');
+      const { envName } = await response.json()
+
+      setEnvName(envName)
+    }
+
+    getEnvName()
+  }, [])
+
   const handleViewJSON = () => {
     setViewJsonModal(!viewJsonModal)
   }
@@ -79,7 +92,7 @@ export default function Home() {
       {viewAddContainerModal ? <AddContainerModal onClick={handleViewAddContainer}/> : null }
       <main className={styles.main}>
         <DashboardHeader onViewJSON={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
-        <DashboardEnv state={state}/>
+        <DashboardEnv state={state} envName={envName} />
         <DashboardContainers viewAddContainerModal={viewAddContainerModal} onClick={handleViewAddContainer}/>
       </main>
     </>

@@ -1,12 +1,12 @@
 import styles from '../styles/Dashboard.module.css'
 
-const DashboardEnv = ({ state }) => {
+const DashboardEnv = ({ state, envName }) => {
   return (
     <div className={styles.envDetails}>
       <dl className={styles.envContainer}>
         <div>
           <dt><h3>Environment Name</h3></dt>
-          <dd>Name</dd>
+          <dd>{envName}</dd>
         </div>
         <div>
           <dt><h3>Deployment Status</h3></dt>
