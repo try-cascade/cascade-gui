@@ -52,7 +52,7 @@ const DashboardContainers = () => {
                   <dt>Port</dt>
                   <dd>{container.port}</dd>
                 </div>
-                <Button onClick={() => 0} text="Delete Container" text="trash"></Button>
+                <Button onClick={() => 0} text="trash"></Button>
               </li>
             )
           })}
