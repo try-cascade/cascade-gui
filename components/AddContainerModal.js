@@ -37,9 +37,11 @@ const AddContainerModal = ({ onClick }) => {
 
     await fetch('http://localhost:3005/aws/service', requestOptions)
 
+    onClick()
     router.push('/') // what does this do? should this take us to the dashboard ('/')?
     // when submitted, S3 bucket is updated (services.json & new folder/.env)
     // - but it doesn't close the modal
+    
     // - and the dashboard container doesn't reflect the updated array of containers (we need to setContainers)
   }
 

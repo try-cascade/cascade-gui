@@ -80,7 +80,7 @@ export default function Home() {
       <main className={styles.main}>
         <DashboardHeader onViewJSON={handleViewJSON} handleDeploy={handleDeploy} handleDestroy={handleDestroy} deployed={state.deployed}/>
         <DashboardEnv state={state}/>
-        <DashboardContainers onClick={handleViewAddContainer}/>
+        <DashboardContainers viewAddContainerModal={viewAddContainerModal} onClick={handleViewAddContainer}/>
       </main>
     </>
   )
