@@ -3,7 +3,6 @@ import Button from "./Button"
 
 const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
   const [containers, setContainers] = useState([])
-  // const [addService, setAddService] = useState(false)
 
   useEffect(() => {
     async function getContainers() {
@@ -17,7 +16,12 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
     getContainers()
   }, [viewAddContainerModal])
 
-  // console.log(typeof setViewAddContainerModal === 'function', "<--- setViewAddContainerModal")
+  async function handleDelete(name) {
+    const response = await fetch(`http://localhost:3005/aws/${name}`, { method: 'DELETE' });
+    const data = await response.json()
+
+    setContainers(data.services.containers)
+  }
 
   if (containers.length === 0) {
     return (
@@ -55,7 +59,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
                   <dt>Port</dt>
                   <dd>{container.port}</dd>
                 </div>
-                <Button onClick={() => 0} text="trash"></Button>
+                <Button onClick={() => handleDelete(container.name)} text="trash"></Button>
               </li>
             )
           })}
