@@ -233,6 +233,7 @@ dd {
   width: 65vw;
   height: 85vh;
   border-radius: 30px;
+  display: flex;
 }
 
 .json {
@@ -242,6 +243,24 @@ dd {
     "c c c c c c"
     ". . . . b b";
   grid-template-rows: 1fr 4fr .2fr;
+}
+
+.container-modal {
+  background-color: #e8defc;
+  width: 40vw;
+  height: 50vh;
+  border-radius: 30px;
+  display: flex;
+}
+
+.container-modal-h1 {
+  margin: 0 0 25px 0;
+}
+
+.add-container {
+  display: grid;
+  align-content: center;
+  justify-items: center;
 }
 
 .json .tabs {
