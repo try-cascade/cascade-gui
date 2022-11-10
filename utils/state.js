@@ -29,7 +29,7 @@ export const initialState = {
 
 export const reducer = (state, action) => {
 
-  const className = action.payload ? "checked" : "x";
+  const className = action.payload ? "check" : "x";
 
   switch(action.type) {
     case "exists":

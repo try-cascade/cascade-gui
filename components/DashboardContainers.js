@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Button from "./Button"
 
-const DashboardContainers = ({ onClick }) => {
+const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
   const [containers, setContainers] = useState([])
   // const [addService, setAddService] = useState(false)
 
@@ -15,7 +15,7 @@ const DashboardContainers = ({ onClick }) => {
     }
 
     getContainers()
-  }, [])
+  }, [viewAddContainerModal])
 
   // console.log(typeof setViewAddContainerModal === 'function', "<--- setViewAddContainerModal")
 

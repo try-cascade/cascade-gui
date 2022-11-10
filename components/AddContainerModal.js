@@ -12,8 +12,10 @@ const AddContainerModal = ({ onClick }) => {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    const data = await fetch('http://localhost:3005/aws/services')
+    const { appName, envName } = await data.json()
 
-    const body = {
+    const body = [{
       app: appName,
       env: envName,
       service: name,
@@ -22,7 +24,7 @@ const AddContainerModal = ({ onClick }) => {
       type: "frontend",
       frontFacingPath: "/",
       var: envVars.split(", ")
-    }
+    }]
 
     const requestOptions = {
       method: 'POST',
@@ -35,7 +37,12 @@ const AddContainerModal = ({ onClick }) => {
 
     await fetch('http://localhost:3005/aws/service', requestOptions)
 
-    router.push('/')
+    onClick()
+    router.push('/') // what does this do? should this take us to the dashboard ('/')?
+    // when submitted, S3 bucket is updated (services.json & new folder/.env)
+    // - but it doesn't close the modal
+    
+    // - and the dashboard container doesn't reflect the updated array of containers (we need to setContainers)
   }
 
   return (
