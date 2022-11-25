@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import styles from "../styles/Layout.module.css"
-import Link from 'next/link'
-import Image from 'next/image'
 
 const Layout = ({ children }) => {
   return (
@@ -15,7 +13,6 @@ const Layout = ({ children }) => {
       <header className={styles.headers}>
         <div className={styles.logoContainer}>
           <div className={styles.logo}>
-            {/* <Image src="/images/logo.png" alt="cascade logo" width="456.4px" height="80%"/> */}
           </div>
         </div>
       </header>

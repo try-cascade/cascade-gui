@@ -8,7 +8,6 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
     async function getContainers() {
       const response = await fetch('http://localhost:3005/aws/services');
       const data = await response.json()
-      console.log(data, "<-- after fetching services in dashboard containers")
 
       setContainers(data.containers)
     }
@@ -39,8 +38,6 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
       <h2>Containers</h2>
       <div className='buttons'>
         <Button onClick={onClick} text="Add Container" />
-
-        {/* <input type='text' value='search' /> */}
       </div>
       <div className="container-details">
         <ul>

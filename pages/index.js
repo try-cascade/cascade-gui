@@ -11,14 +11,10 @@ import AddContainerModal from '../components/AddContainerModal';
 import { reducer, initialState } from '../utils/state.js'
 import { streamTfData } from '../utils/event';
 
-
-
-
-// thinking about a setReducer
 export default function Home() {
   const [_, setApplications] = useState(false)
-  const [viewJsonModal, setViewJsonModal] = useState(false) // for view json button
-  const [viewAddContainerModal, setViewAddContainerModal] = useState(false) // for add container button
+  const [viewJsonModal, setViewJsonModal] = useState(false)
+  const [viewAddContainerModal, setViewAddContainerModal] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState);
   const [envName, setEnvName] = useState('')
 
@@ -36,7 +32,6 @@ export default function Home() {
 
   useEffect(() => {
     async function getApplications() {
-      console.log("testing getapplications function")
       const response = await fetch('http://localhost:3005/aws/applications');
       const data = await response.json()
 
@@ -98,12 +93,3 @@ export default function Home() {
     </>
   )
 }
-
-/*
-If a user doesn't have any applications set up should the main page ask if they would like to set one up?
-Or always show the buttons?
-
-To Do:
-deal with plural words
-Create a 404 not found page
-*/

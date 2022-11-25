@@ -47,7 +47,7 @@ const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
       <div className={styles.mainContent}>
         <h1 className={styles.h1}>Instrument Your Application(s)</h1>
         <p className={styles.p}>Make sure to follow the instructions in this <a href="https://github.com/try-cascade/cascade-agent" className={styles.link} target="_blank">repo</a> to instrument your applications.</p>
-        <p className={styles.p}> Provide the AWS credentials you used for instrumention:</p>
+        <p className={styles.p}> Provide the AWS credentials you used for instrumentation:</p>
         <form onSubmit={handleSubmit} className={`${styles.form} ${styles.credentials}`}>
           <label>
             Environment Name:
@@ -73,18 +73,3 @@ const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
 }
 
 export default EnvironmentForm
-
-/*
-Next up let's answer some questions about your environment.
-  - What would you like to name your environment? (textbox)
-  - Would you like to set up Traces on this environment connected to X-Ray? yes/no (dropdown)
-    - if yes
-      - give them the directions for instrumenting there services
-      - once the services are instrumented please provide this information:
-        - "AWS_ACCESS_KEY_ID=",
-          "AWS_REGION=",
-          "AWS_SECRET_ACCESS_KEY=",
-          "BUCKET="
-  - if no
-  - submit button
-*/

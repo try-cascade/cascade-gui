@@ -11,8 +11,7 @@ const JsonModal = ({ onViewJSON }) => {
       const requestOptions = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         }
       };
 
@@ -42,14 +41,6 @@ const JsonModal = ({ onViewJSON }) => {
     window.open(`https://s3.console.aws.amazon.com/s3/object/${bucket}?prefix=${envName}/services-stack/cdk.tf.json`, '_blank');
   }
 
-  // const handleDownload = () => {
-  //   console.log("should add download functionality here")
-  // }
-
-  // const handleUpload = () => {
-  //   console.log("should add upload functionality here")
-  // }
-
   return (
     <div className="modal-background" onClick={onViewJSON}>
       <div className='modal json' onClick={(e) => e.stopPropagation() }>
@@ -68,10 +59,6 @@ const JsonModal = ({ onViewJSON }) => {
             <JSONPretty id="json-pretty" data={json.environment}></JSONPretty> :
             <JSONPretty id="json-pretty" data={json.services}></JSONPretty>}
         </div>
-        {/* <div className="btns">
-          <Button onClick={handleDownload} text="Download" />
-          <Button onClick={handleUpload} text="Upload" />
-        </div> */}
       </div>
     </div>
   )

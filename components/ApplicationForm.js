@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import styles from '../styles/Setup.module.css'
 
 const ApplicationForm = ( { onSubmit, appName } ) => {
-  // const [name, setName] = useState('')
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -15,8 +13,7 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
       body: JSON.stringify({ name: appName[0] })
     };
 
-    const response = await fetch('http://localhost:3005/aws/bucket', requestOptions)
-    console.log(response)
+    await fetch('http://localhost:3005/aws/bucket', requestOptions)
 
     onSubmit(true)
   }
@@ -36,7 +33,7 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
       </div>
       <div className={styles.mainContent}>
         <h1 className={styles.h1}>Create an Application</h1>
-        <p className={styles.p}>Let's get you started!</p> 
+        <p className={styles.p}>Let's get you started!</p>
         <p className={styles.p}>We will create a bucket in your AWS account to store all the necessary information for your application.</p>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label}>

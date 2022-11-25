@@ -1,47 +1,14 @@
-// import { useEffect } from "react"
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import styles from '../styles/Setup.module.css'
 import ContainerInput from './ContainerInput'
 
 const ServiceForm = ({ appName, envName }) => {
-  // const [counter, setCounter] = useState(1);
   const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
-  // for handling input change, setBodyList([...bodyList])
-  // for handling adding list, setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
   const router = useRouter()
-  /*
-  Payload:
-{
-  "app": "name"
-  "env": "name"
-  "service": "name"
-  "image": "path"
-  "port": "3000"
-  "type": "backend/frontend"
-  "frontFacingPath": "path"
-  "var": [
-    "key=value",
-  ]
-}
-*/
+
   async function handleSubmit(e) {
     e.preventDefault()
-
-    // const body = []
-    /*
-    {
-      app: appName,
-      env: envName,
-      service: name,
-      image,
-      port,
-      type: "frontend",
-      frontFacingPath: "/",
-      var: envVars.split(", ")
-    }
-    */
-
 
     const requestOptions = {
       method: 'POST',
@@ -59,7 +26,6 @@ const ServiceForm = ({ appName, envName }) => {
 
   function handleClickPlus() {
     setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
-    // setCounter(counter + 1);
   }
 
   function handleClickMinus() {
@@ -67,9 +33,6 @@ const ServiceForm = ({ appName, envName }) => {
     if (bodyList.length > 1) {
       setBodyList(list.slice(0, -1));
     }
-    // if (counter > 1) {
-    //   setCounter(counter - 1);
-    // }
   }
 
   return (
@@ -95,14 +58,3 @@ const ServiceForm = ({ appName, envName }) => {
 }
 
 export default ServiceForm
-
-/*
-Your environment is being created, let's finish up by adding a service.
-  - What would you like to name your service? (input)
-  - Could you provide the image link? (input)
-  - Port? (input)
-  - What type of app? backend/frontend (dropdown)
-    - if frontend
-      - what path would you like this service to be on?
-  - Would you like to add any private variables? + with toggle (inputs)
-*/
