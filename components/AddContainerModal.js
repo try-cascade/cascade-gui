@@ -64,7 +64,7 @@ const AddContainerModal = ({ onClick }) => {
         </label>
         <label>
           Environment Variables:
-          <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... ">{envVars}</textarea>
+          <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... " value={envVars} />
         </label>
         <input className={styles.button} type="submit" />
       </form>
