@@ -1,4 +1,5 @@
 import styles from '../styles/Setup.module.css'
+import Button from './Button';
 
 const ApplicationForm = ( { onSubmit, appName } ) => {
   async function handleSubmit(e) {
@@ -23,8 +24,8 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
   }
 
   return (
-    <>
-      <div className={styles.progress}>
+    <div className="create-app-layout">
+      <div className="progress">
         <span className={`${styles.dot} ${styles.selected}`}>1</span>
         <span>- - - - -</span>
         <span className={styles.dot}>2</span>
@@ -33,17 +34,16 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
       </div>
       <div className={styles.mainContent}>
         <h1 className={styles.h1}>Create an Application</h1>
-        <p className={styles.p}>Let's get you started!</p>
-        <p className={styles.p}>We will create a bucket in your AWS account to store all the necessary information for your application.</p>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <label className={styles.label}>
-            Application Name:
-            <input className={styles.input} type="text" value={appName[0]} onChange={handleChange}/>
-          </label>
-          <input className={styles.button} type="submit" />
+        <p className={styles.p}>This will create an s3 bucket in your AWS account to store all necessary information for your application.</p>
+        <form className="app-form" onSubmit={handleSubmit}>
+        <div className="underline-input">
+          <input className={styles.input} type="text" value={appName[0]} onChange={handleChange} id="app"/>
+          <label for="app" className="form-label">Application Name:</label>
+        </div>
+          <Button text="Submit" />
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

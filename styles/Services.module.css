@@ -1,7 +1,5 @@
 .main {
   display: grid;
-  align-items: center;
-  background-color: #e8defc4b;
   width: 100%;
   justify-items: center;
 }
