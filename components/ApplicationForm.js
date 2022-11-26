@@ -36,10 +36,10 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
         <h1 className={styles.h1}>Create an Application</h1>
         <p className={styles.p}>This will create an s3 bucket in your AWS account to store all necessary information for your application.</p>
         <form className="app-form" onSubmit={handleSubmit}>
-        <div className="underline-input">
-          <input className={styles.input} type="text" value={appName[0]} onChange={handleChange} id="app"/>
-          <label for="app" className="form-label">Application Name:</label>
-        </div>
+          <div className="underline-input">
+            <input className={styles.input} type="text" value={appName[0]} onChange={handleChange} id="app"/>
+            <label htmlFor="app" className="form-label">Application Name:</label>
+          </div>
           <Button text="Submit" />
         </form>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styles from '../styles/Setup.module.css'
+import Button from "./Button"
 
 const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
   const [key, setKey] = useState('')
@@ -36,8 +37,8 @@ const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
   }
 
   return (
-    <>
-      <div className={styles.progress}>
+    <div className="create-app-layout">
+      <div className="progress">
         <span className={styles.dot}>1</span>
         <span>- - - - -</span>
         <span className={`${styles.dot} ${styles.selected}`}>2</span>
@@ -45,30 +46,44 @@ const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
         <span className={styles.dot}>3</span>
       </div>
       <div className={styles.mainContent}>
-        <h1 className={styles.h1}>Instrument Your Application(s)</h1>
-        <p className={styles.p}>Make sure to follow the instructions in this <a href="https://github.com/try-cascade/cascade-agent" className={styles.link} target="_blank">repo</a> to instrument your applications.</p>
-        <p className={styles.p}> Provide the AWS credentials you used for instrumentation:</p>
-        <form onSubmit={handleSubmit} className={`${styles.form} ${styles.credentials}`}>
-          <label>
-            Environment Name:
-            <input type="text" value={envName[0]} onChange={(e) => handleChange(e, envName[1])} />
-          </label>
-          <label>
-            AWS_ACCESS_KEY_ID<span className={styles.req}>*</span>:
+        <h1 className={styles.h1}>Instrument Your Application</h1>
+        <h3>Set Up Traces</h3>
+        <div className="instrumentation-instructions">
+          <p>In your application that you wish to deploy install the cascade-agent package run</p>
+          <code className="center">npm install cascade-agent</code>
+
+          <p>Require cascade-agent and specify the name of the service at the top of each service's server code</p>
+          <code className="center">require('cascade-agent')('my-service');</code>
+
+          <p>The name you list for <code>'my-service'</code> will be how the service will be labeled on AWS X-Ray</p>
+
+          <p>Make sure when instrumenting your different services that each one is instrumented using the same AWS credentials.</p>
+
+          <p className={styles.p}><a href="https://github.com/try-cascade/cascade-agent" className={styles.link} target="_blank">Click here for more details.</a></p>
+        </div>
+
+        <h3>Provide Credentials</h3>
+        <form onSubmit={handleSubmit} className="env-form">
+          <div className="underline-input">
+            <input type="text" value={envName[0]} onChange={(e) => handleChange(e, envName[1])} id="env" />
+            <label htmlFor="env" className="form-label">Environment Name:</label>
+          </div>
+          <div className="underline-input">
             <input type="text" value={key} onChange={(e) => handleChange(e, setKey)} required />
-          </label>
-          <label>
-          AWS_SECRET_ACCESS_KEY<span className={styles.req}>*</span>:
+            <label className="form-label">AWS Access Key<span className="required">*</span>:</label>
+          </div>
+          <div className="underline-input">
             <input type="password" value={secretKey} onChange={(e) => handleChange(e, setSecretKey)} required />
-          </label>
-          <label>
-          AWS_REGION<span className={styles.req}>*</span>:
+            <label className="form-label">AWS Secret Access Key<span className="required">*</span>:</label>
+          </div>
+          <div className="underline-input">
             <input type="text" value={region} onChange={(e) => handleChange(e, setRegion)} required />
-          </label>
-          <input className={styles.button} type="submit" />
+            <label className="form-label">AWS Region<span className="required">*</span>:</label>
+          </div>
+          <Button text="submit" />
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -53,6 +53,18 @@ p, dd, li {
   font-size: 1.25em;
 }
 
+.center {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+code {
+  color: #6077ff;
+  font-style: italic;
+}
+
 button {
   padding: 15px;
   margin: 10px;
@@ -117,6 +129,14 @@ button {
   font-weight:700;
 }
 
+.required {
+  color: #4E050C;
+}
+
+.underline-input input:focus ~ .form-label .required {
+  color: #cc75ff;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -146,6 +166,26 @@ button {
 
 .app-form button {
   align-self: flex-end;
+}
+
+/* Create an Environment */
+
+.env-form {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin-bottom: 25px;
+}
+
+.env-form button {
+  align-self: flex-end;
+  margin: 0;
+  margin-top: 35px;
+}
+
+.instrumentation-instructions {
+  margin-bottom: 35px;
+  width: 55%;
 }
 
 /* env Stack */
