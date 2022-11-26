@@ -95,12 +95,30 @@ button {
   transition: border-color 0.2s;
 }
 
-.underline-input input::placeholder {
-  color: transparent;
+.underline-input textarea {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #3d1170;
+  border-left: 2px solid #3d1170;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #cc75ff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  height: 3em;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.underline-input input:placeholder-shown ~ .form-label {
-  font-size: 1.3rem;
+.underline-input input::placeholder,
+.underline-input textarea::placeholder {
+  color: #e8defc;
+}
+
+.underline-input input:placeholder-shown ~ .form-label,
+.underline-input textarea:placeholder-shown ~ .form-label {
   cursor: text;
   top: 20px;
 }
@@ -113,7 +131,8 @@ button {
   font-weight:700;
 }
 
-.underline-input input:focus {
+.underline-input input:focus,
+.underline-input textarea:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
@@ -121,7 +140,8 @@ button {
   border-image-slice: 1;
 }
 
-.underline-input input:focus ~ .form-label {
+.underline-input input:focus ~ .form-label,
+.underline-input textarea:focus ~ .form-label {
   white-space: nowrap;
   transition: 0.2s;
   font-size: 1rem;
@@ -133,7 +153,8 @@ button {
   color: #4E050C;
 }
 
-.underline-input input:focus ~ .form-label .required {
+.underline-input input:focus ~ .form-label .required,
+.underline-input textarea:focus ~ .form-label .required {
   color: #cc75ff;
 }
 
@@ -186,6 +207,33 @@ button {
 .instrumentation-instructions {
   margin-bottom: 35px;
   width: 55%;
+}
+
+/* Welcome -- Add Containers */
+
+.add-remove-btns {
+  display: flex;
+  margin-top: -25px;
+}
+
+.add-remove-btns button {
+  min-width: 50px;
+}
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-form button {
+  align-self: flex-end;
+  margin: 0;
+  margin-top: 25px;
+}
+
+.container {
+  padding-bottom: 35px;
+  border-bottom: 4px double #6077ff;
 }
 
 /* env Stack */

@@ -69,16 +69,16 @@ const EnvironmentForm = ( { onSubmit, appName, envName } ) => {
             <label htmlFor="env" className="form-label">Environment Name:</label>
           </div>
           <div className="underline-input">
-            <input type="text" value={key} onChange={(e) => handleChange(e, setKey)} required />
-            <label className="form-label">AWS Access Key<span className="required">*</span>:</label>
+            <input id="key" type="text" value={key} onChange={(e) => handleChange(e, setKey)} required />
+            <label htmlFor="key" className="form-label">AWS Access Key<span className="required">*</span>:</label>
           </div>
           <div className="underline-input">
-            <input type="password" value={secretKey} onChange={(e) => handleChange(e, setSecretKey)} required />
-            <label className="form-label">AWS Secret Access Key<span className="required">*</span>:</label>
+            <input id="secret" type="password" value={secretKey} onChange={(e) => handleChange(e, setSecretKey)} required />
+            <label htmlFor="secret" className="form-label">AWS Secret Access Key<span className="required">*</span>:</label>
           </div>
           <div className="underline-input">
-            <input type="text" value={region} onChange={(e) => handleChange(e, setRegion)} required />
-            <label className="form-label">AWS Region<span className="required">*</span>:</label>
+            <input id="region" type="text" value={region} onChange={(e) => handleChange(e, setRegion)} required />
+            <label htmlFor="region" className="form-label">AWS Region<span className="required">*</span>:</label>
           </div>
           <Button text="submit" />
         </form>

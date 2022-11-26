@@ -24,24 +24,23 @@ export function ContainerInput({ setBodyList, bodyArr, app, env }) {
   }
 
   return (
-    <div className={`${styles.form} ${styles.containers}`}>
-      <label>
-        Container Name<span className={styles.req}>*</span>:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-      </label>
-      <label>
-        Image Link<span className={styles.req}>*</span>:
-        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
-      </label>
-      <label>
-        Port<span className={styles.req}>*</span>:
-        <input type="text" value={port} onChange={(e) => setPort(e.target.value)} required />
-      </label>
-      <label>
-        Environment Variables:
-        <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... ">{envVars}</textarea>
-      </label>
-      <button onClick={handleClickSave}>Save</button>
+    <div className="container" onBlur={handleClickSave}>
+      <div className="underline-input">
+        <input id="service" type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        <label htmlFor="service" className="form-label">Container Name<span className={styles.req}>*</span>:</label>
+      </div>
+      <div className="underline-input">
+        <input id="image" type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
+        <label htmlFor="image" className="form-label">Image Link<span className={styles.req}>*</span>:</label>
+      </div>
+      <div className="underline-input">
+        <input id="port" type="text" value={port} onChange={(e) => setPort(e.target.value)} required />
+        <label htmlFor="port" className="form-label">Port<span className={styles.req}>*</span>:</label>
+      </div>
+      <div className="underline-input">
+        <textarea id="vars" onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... " value={envVars} />
+        <label htmlFor="vars" className="form-label">Environment Variables:</label>
+      </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import styles from '../styles/Setup.module.css'
 import ContainerInput from './ContainerInput'
+import Button from './Button'
 
 const ServiceForm = ({ appName, envName }) => {
   const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
@@ -35,9 +36,11 @@ const ServiceForm = ({ appName, envName }) => {
     }
   }
 
+  console.log(bodyList)
+
   return (
-    <>
-      <div className={styles.progress}>
+    <div className="create-app-layout">
+      <div className="progress">
         <span className={styles.dot}>1</span>
         <span>- - - - -</span>
         <span className={styles.dot}>2</span>
@@ -45,15 +48,19 @@ const ServiceForm = ({ appName, envName }) => {
         <span className={`${styles.dot} ${styles.selected}`}>3</span>
       </div>
       <h1 className={styles.h1}>Add Containers</h1>
-      <form onSubmit={handleSubmit} className={`${styles.form}`}>
-        {bodyList.map((_, idx) => <ContainerInput key={idx} app={appName} env={envName} bodyArr={bodyList} setBodyList={setBodyList}/>)}
+      <div className='add-remove-btns'>
         <div>
-          <input onClick={handleClickPlus} className={styles.button} type="button" value="+" />
-          <input onClick={handleClickMinus} className={styles.button} type="button" value="-" />
-          <input className={styles.button} type="submit" />
+          <Button text="+" onClick={handleClickPlus} />
         </div>
+        <div>
+          <Button text="-" onClick={handleClickMinus} />
+        </div>
+      </div>
+      <form onSubmit={handleSubmit} className="container-form">
+        {bodyList.map((_, idx) => <ContainerInput key={idx} app={appName} env={envName} bodyArr={bodyList} setBodyList={setBodyList}/>)}
+        <Button text="Submit"/>
       </form>
-    </>
+    </div>
   )
 }
 
