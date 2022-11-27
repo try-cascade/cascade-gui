@@ -158,6 +158,15 @@ button {
   color: #cc75ff;
 }
 
+.trash {
+  background-image: url('../public/images/trash.png');
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -365,19 +374,41 @@ dd {
   justify-content: center;
 }
 
+.buttons button {
+  min-width: 25px;
+  min-height: 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.buttons button span {
+  padding: 2px;
+}
+
 .container-details {
-  width: 50%;
+  width: 100%;
   margin-top: 30px;
+}
+
+.container-details ul {
+  list-style-position: inside;
+  padding-left: 0;
 }
 
 .container-details li {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding: 25px;
+}
+
+.container-details li:nth-child(odd) {
+  background-color: #e8defc;
 }
 
 .container-details li div {
   text-align: center;
+  min-width: 200px;
 }
 /* Modal */
 
@@ -427,6 +458,10 @@ dd {
   display: grid;
   align-content: center;
   justify-items: center;
+}
+
+.add-container button {
+  margin-top: 40px;
 }
 
 .json .tabs {

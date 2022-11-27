@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
-import styles from '../styles/Setup.module.css'
+import Button from './Button'
 
 const AddContainerModal = ({ onClick }) => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [port, setPort] = useState('')
   const [envVars, setEnvVars] = useState('')
-
-  const router = useRouter()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -38,36 +35,31 @@ const AddContainerModal = ({ onClick }) => {
     await fetch('http://localhost:3005/aws/service', requestOptions)
 
     onClick()
-    router.push('/') // what does this do? should this take us to the dashboard ('/')?
-    // when submitted, S3 bucket is updated (services.json & new folder/.env)
-    // - but it doesn't close the modal
-    
-    // - and the dashboard container doesn't reflect the updated array of containers (we need to setContainers)
   }
 
   return (
     <div className="modal-background" onClick={onClick}>
       <div className='container-modal add-container' onClick={(e) => e.stopPropagation() }>
         <h1 className='container-modal-h1'>Add Container</h1>
-        <form onSubmit={handleSubmit} className={`${styles.form} ${styles.containers}`}>
-        <label>
-          Container Name<span className={styles.req}>*</span>:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </label>
-        <label>
-          Image Link<span className={styles.req}>*</span>:
-          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
-        </label>
-        <label>
-          Port<span className={styles.req}>*</span>:
-          <input type="text" value={port} onChange={(e) => setPort(e.target.value)} required />
-        </label>
-        <label>
-          Environment Variables:
-          <textarea onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... " value={envVars} />
-        </label>
-        <input className={styles.button} type="submit" />
-      </form>
+        <form onSubmit={handleSubmit} className="app-form">
+          <div className="underline-input">
+            <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+            <label htmlFor="name" className="form-label">Container Name<span className="required">*</span>:</label>
+          </div>
+          <div className="underline-input">
+            <input id="image" type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
+            <label htmlFor="image" className="form-label">Image Link<span className="required">*</span>:</label>
+          </div>
+          <div className="underline-input">
+            <input id="port" type="text" value={port} onChange={(e) => setPort(e.target.value)} required />
+            <label htmlFor="port" className="form-label">Port<span className="required">*</span>:</label>
+          </div>
+          <div className="underline-input">
+            <textarea id="vars" onChange={(e) => setEnvVars(e.target.value)} placeholder="Key=Value, Key=Value... " value={envVars} />
+            <label htmlFor="vars" className="form-label">Environment Variables:</label>
+          </div>
+          <Button text="Submit" />
+        </form>
       </div>
     </div>
   )

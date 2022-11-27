@@ -35,9 +35,9 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
 
   return (
     <div className='containers'>
-      <h2>Containers</h2>
       <div className='buttons'>
-        <Button onClick={onClick} text="Add Container" />
+        <h2>Containers</h2>
+        <Button onClick={onClick} text="+" />
       </div>
       <div className="container-details">
         <ul>
@@ -56,7 +56,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
                   <dt>Port</dt>
                   <dd>{container.port}</dd>
                 </div>
-                <Button onClick={() => handleDelete(container.name)} text="trash"></Button>
+                <div className="trash" onClick={() => handleDelete(container.name)}></div>
               </li>
             )
           })}
