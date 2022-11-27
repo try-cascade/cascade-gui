@@ -1,6 +1,5 @@
 import Button from "./Button"
 import styles from '../styles/Dashboard.module.css'
-import { useState } from "react"
 
 const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) => {
   const handleVisitCloudWatch = async () => {
