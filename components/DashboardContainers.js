@@ -22,7 +22,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
     setContainers(data.services.containers)
   }
 
-  if (containers.length === 0) {
+  if (containers === undefined) {
     return (
       <div className='containers'>
         <h2>Containers</h2>
