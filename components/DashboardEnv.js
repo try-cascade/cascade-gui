@@ -13,7 +13,7 @@ const resourceTitles = {
   "albTargetGroup": "Target Group for Application Load Balancer",
   "executionRole": "IAM Execution Role",
   "taskDefinition": "ECS Task Definition",
-  "securityGroup": "ECS Cluster Security Group",
+  "securityGroup": "ECS Security Group",
   "ecsCluster": "ECS Cluster",
   "albSecurityGroup": "Application Load Balancer Security Group",
   "ecsService": "ECS Service",

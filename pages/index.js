@@ -37,7 +37,7 @@ export default function Home() {
 
       setApplications(data.applications)
 
-      if (data.applications.length === 0) {
+      if (data.applications === undefined) {
         router.push('/welcome')
       }
     }

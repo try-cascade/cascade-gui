@@ -35,7 +35,7 @@ const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) 
         <Button text="View JSON" onClick={onViewJSON} />
         {deployed ? <Button text="View CloudWatch Logs" onClick={handleVisitCloudWatch} /> : null}
         {deployed ? <Button text="Visit Site" onClick={handleVisitSite} /> : null}
-        {deployed ? <Button text="View X-ray Traces" onClick={handleVisitXray} /> : null}
+        {deployed ? <Button text="View X-Ray Traces" onClick={handleVisitXray} /> : null}
       </div>
     </header>
   )
