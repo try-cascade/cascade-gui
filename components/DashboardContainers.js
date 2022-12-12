@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react"
 import Button from "./Button"
 
-const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
+const DashboardContainers = ({ viewAddContainerModal, onClick, applications }) => {
   const [containers, setContainers] = useState([])
 
   useEffect(() => {
     async function getContainers() {
-      const response = await fetch('http://localhost:3005/aws/services');
-      const data = await response.json()
+      if (applications.length !== 0) {
+        const response = await fetch('http://localhost:3005/aws/services');
+        const data = await response.json()
 
-      setContainers(data.containers)
+        setContainers(data.containers)
+      }
     }
 
     getContainers()
