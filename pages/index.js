@@ -12,14 +12,14 @@ import { reducer, initialState } from '../utils/state.js';
 import { streamTfData } from '../utils/event';
 
 export default function Home() {
-  const [applications, setApplications] = useState([]);
+  const [applications, setApplications] = useState(false);
   const [viewJsonModal, setViewJsonModal] = useState(false);
   const [viewAddContainerModal, setViewAddContainerModal] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [envName, setEnvName] = useState('');
 
   const handleDeploy = () => {
-    streamTfData('msg', 'Creation', true, dispatch);
+    streamTfData('deploy', 'Creation', true, dispatch);
     dispatch({type: "deploy"});
   }
 
@@ -35,10 +35,10 @@ export default function Home() {
       const response = await fetch('http://localhost:3005/aws/applications');
       const data = await response.json();
 
-      setApplications(data.applications);
-
-      if (applications.length === 0) {
+      if (data.applications.length === 0) {
         router.push('/welcome');
+      } else {
+        setApplications(true);
       }
     }
 
@@ -62,7 +62,7 @@ export default function Home() {
 
   useEffect(() => {
     const getEnvName = async () => {
-      if (applications.length !== 0) {
+      if (applications) {
         const response = await fetch('http://localhost:3005/aws/services');
         const { envName } = await response.json();
 
@@ -71,7 +71,7 @@ export default function Home() {
     }
 
     getEnvName();
-  }, [])
+  }, [applications])
 
   const handleViewJSON = () => {
     setViewJsonModal(!viewJsonModal);

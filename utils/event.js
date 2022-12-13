@@ -1,15 +1,12 @@
 import EventSource from 'eventsource';
 
 export const streamTfData = async (path, action, setBool, dispatch) => {
-  console.log("streaming")
   const response = await fetch('http://localhost:3005/aws/services');
   const { envName } = await response.json();
 
   const source = new EventSource(`http://localhost:3005/terraform/${path}`); // GET request?
 
   source.onmessage = event => {
-    console.log("received event");
-
     // env stack
     if (event.data.includes(`(cs-${envName}-vpc): ${action} complete`)) {
      dispatch({type: "vpc", payload: setBool})
@@ -53,8 +50,6 @@ export const streamTfData = async (path, action, setBool, dispatch) => {
     } else if (event.data.includes(`(cs-${envName}-service): ${action} complete`)) {
       dispatch({type: "ecs service", payload: setBool})
     }
-
-    console.log(event.data, "<--- event data");
   };
 
   source.onerror = () => {

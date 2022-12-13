@@ -6,7 +6,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick, applications }) =
 
   useEffect(() => {
     async function getContainers() {
-      if (applications.length !== 0) {
+      if (applications) {
         const response = await fetch('http://localhost:3005/aws/services');
         const data = await response.json()
 
@@ -15,7 +15,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick, applications }) =
     }
 
     getContainers()
-  }, [viewAddContainerModal])
+  }, [viewAddContainerModal, applications])
 
   async function handleDelete(name) {
     const response = await fetch(`http://localhost:3005/aws/${name}`, { method: 'DELETE' });

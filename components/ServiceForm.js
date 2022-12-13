@@ -36,8 +36,6 @@ const ServiceForm = ({ appName, envName }) => {
     }
   }
 
-  console.log(bodyList)
-
   return (
     <div className="create-app-layout">
       <div className="progress">
