@@ -20,7 +20,7 @@ const JsonModal = ({ onViewJSON }) => {
       setJson(await response.json());
     }
 
-    upload()
+    upload();
   }, []);
 
   const handleS3Env = async () => {
