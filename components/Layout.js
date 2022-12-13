@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import styles from "../styles/Layout.module.css"
+import Head from 'next/head';
+import styles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   return (
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

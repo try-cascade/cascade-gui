@@ -1,11 +1,11 @@
-import styles from '../styles/Setup.module.css'
-import { useState } from 'react'
+import styles from '../styles/Setup.module.css';
+import { useState } from 'react';
 
 export function ContainerInput({ setBodyList, bodyArr, app, env }) {
-  const [name, setName] = useState('')
-  const [image, setImage] = useState('')
-  const [port, setPort] = useState('')
-  const [envVars, setEnvVars] = useState('')
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [port, setPort] = useState('');
+  const [envVars, setEnvVars] = useState('');
   
   const currentBody = {
     app,
@@ -16,12 +16,12 @@ export function ContainerInput({ setBodyList, bodyArr, app, env }) {
     type: "frontend",
     frontFacingPath: "/",
     var: envVars.split(", ")
-  }
+  };
 
   const handleClickSave = (e) => {
-    e.preventDefault()
-    setBodyList(bodyArr.slice(0, -1).concat(currentBody))
-  }
+    e.preventDefault();
+    setBodyList(bodyArr.slice(0, -1).concat(currentBody));
+  };
 
   return (
     <div className="container" onBlur={handleClickSave}>
@@ -42,7 +42,7 @@ export function ContainerInput({ setBodyList, bodyArr, app, env }) {
         <label htmlFor="vars" className="form-label">Environment Variables:</label>
       </div>
     </div>
-  )
+  );
 }
 
-export default ContainerInput
+export default ContainerInput;

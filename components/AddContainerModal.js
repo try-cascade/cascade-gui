@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import Button from './Button'
+import { useState } from 'react';
+import Button from './Button';
 
 const AddContainerModal = ({ onClick }) => {
-  const [name, setName] = useState('')
-  const [image, setImage] = useState('')
-  const [port, setPort] = useState('')
-  const [envVars, setEnvVars] = useState('')
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [port, setPort] = useState('');
+  const [envVars, setEnvVars] = useState('');
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    const data = await fetch('http://localhost:3005/aws/services')
-    const { appName, envName } = await data.json()
+    e.preventDefault();
+    const data = await fetch('http://localhost:3005/aws/services');
+    const { appName, envName } = await data.json();
 
     const body = [{
       app: appName,
@@ -21,7 +21,7 @@ const AddContainerModal = ({ onClick }) => {
       type: "frontend",
       frontFacingPath: "/",
       var: envVars.split(", ")
-    }]
+    }];
 
     const requestOptions = {
       method: 'POST',
@@ -32,9 +32,9 @@ const AddContainerModal = ({ onClick }) => {
       body: JSON.stringify(body)
     };
 
-    await fetch('http://localhost:3005/aws/service', requestOptions)
+    await fetch('http://localhost:3005/aws/service', requestOptions);
 
-    onClick()
+    onClick();
   }
 
   return (
@@ -62,7 +62,7 @@ const AddContainerModal = ({ onClick }) => {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default AddContainerModal;

@@ -1,25 +1,27 @@
-import { useState, useEffect } from "react"
-import Button from "./Button"
+import { useState, useEffect } from "react";
+import Button from "./Button";
 
-const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
-  const [containers, setContainers] = useState([])
+const DashboardContainers = ({ viewAddContainerModal, onClick, applications }) => {
+  const [containers, setContainers] = useState([]);
 
   useEffect(() => {
     async function getContainers() {
-      const response = await fetch('http://localhost:3005/aws/services');
-      const data = await response.json()
+      if (applications) {
+        const response = await fetch('http://localhost:3005/aws/services');
+        const data = await response.json();
 
-      setContainers(data.containers)
+        setContainers(data.containers);
+      }
     }
 
-    getContainers()
-  }, [viewAddContainerModal])
+    getContainers();
+  }, [viewAddContainerModal, applications]);
 
   async function handleDelete(name) {
     const response = await fetch(`http://localhost:3005/aws/${name}`, { method: 'DELETE' });
-    const data = await response.json()
+    const data = await response.json();
 
-    setContainers(data.services.containers)
+    setContainers(data.services.containers);
   }
 
   if (containers === undefined) {
@@ -30,7 +32,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
           <Button onClick={onClick} text="Add Container" />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -65,7 +67,7 @@ const DashboardContainers = ({ viewAddContainerModal, onClick }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default DashboardContainers
+export default DashboardContainers;

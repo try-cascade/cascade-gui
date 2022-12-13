@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import styles from '../styles/Setup.module.css'
-import ContainerInput from './ContainerInput'
-import Button from './Button'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import styles from '../styles/Setup.module.css';
+import ContainerInput from './ContainerInput';
+import Button from './Button';
 
 const ServiceForm = ({ appName, envName }) => {
   const [bodyList, setBodyList] = useState([{ app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const requestOptions = {
       method: 'POST',
@@ -20,13 +20,13 @@ const ServiceForm = ({ appName, envName }) => {
       body: JSON.stringify(bodyList)
     };
 
-    await fetch('http://localhost:3005/aws/service', requestOptions)
+    await fetch('http://localhost:3005/aws/service', requestOptions);
 
-    router.push('/')
+    router.push('/');
   }
 
   function handleClickPlus() {
-    setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }])
+    setBodyList([...bodyList, { app: appName, env: envName, service: "", image: "", port: "", type: "backend/frontend", frontFacingPath: "path" }]);
   }
 
   function handleClickMinus() {
@@ -35,8 +35,6 @@ const ServiceForm = ({ appName, envName }) => {
       setBodyList(list.slice(0, -1));
     }
   }
-
-  console.log(bodyList)
 
   return (
     <div className="create-app-layout">
@@ -61,7 +59,7 @@ const ServiceForm = ({ appName, envName }) => {
         <Button text="Submit"/>
       </form>
     </div>
-  )
+  );
 }
 
-export default ServiceForm
+export default ServiceForm;

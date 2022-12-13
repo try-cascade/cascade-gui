@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import Button from "./Button"
+import { useEffect, useState } from "react";
+import Button from "./Button";
 import JSONPretty from 'react-json-pretty';
 
 const JsonModal = ({ onViewJSON }) => {
-  const [json, setJson] = useState({})
-  const [selected, setSelected] = useState('environment')
+  const [json, setJson] = useState({});
+  const [selected, setSelected] = useState('environment');
 
   useEffect(() => {
     async function upload() {
@@ -15,13 +15,13 @@ const JsonModal = ({ onViewJSON }) => {
         }
       };
 
-      await fetch('http://localhost:3005/terraform/upload', requestOptions)
-      const response = await fetch('http://localhost:3005/aws/terraform')
-      setJson(await response.json())
+      await fetch('http://localhost:3005/terraform/upload', requestOptions);
+      const response = await fetch('http://localhost:3005/aws/terraform');
+      setJson(await response.json());
     }
 
-    upload()
-  }, [])
+    upload();
+  }, []);
 
   const handleS3Env = async () => {
     const response = await fetch('http://localhost:3005/aws/services');
@@ -54,14 +54,13 @@ const JsonModal = ({ onViewJSON }) => {
           <Button onClick={selected === "environment" ? handleS3Env : handleS3Service} text="View on S3" />
         </div>
         <div className="content">
-
           {selected === "environment" ?
             <JSONPretty id="json-pretty" data={json.environment}></JSONPretty> :
             <JSONPretty id="json-pretty" data={json.services}></JSONPretty>}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default JsonModal
+export default JsonModal;
