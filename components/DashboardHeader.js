@@ -1,5 +1,5 @@
-import Button from "./Button"
-import styles from '../styles/Dashboard.module.css'
+import Button from "./Button";
+import styles from '../styles/Dashboard.module.css';
 
 const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) => {
   const handleVisitCloudWatch = async () => {
@@ -11,10 +11,9 @@ const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) 
 
   const handleVisitSite = async () => {
     const response = await fetch('http://localhost:3005/aws/website');
-    const url = await response.json()
+    const url = await response.json();
     if (url.error) {
-      console.log(url.error)
-      return
+      return;
     }
     window.open(url.url, '_blank');
   }
@@ -38,7 +37,7 @@ const DashboardHeader = ({ onViewJSON, handleDeploy, handleDestroy, deployed }) 
         {deployed ? <Button text="View X-Ray Traces" onClick={handleVisitXray} /> : null}
       </div>
     </header>
-  )
+  );
 }
 
-export default DashboardHeader
+export default DashboardHeader;

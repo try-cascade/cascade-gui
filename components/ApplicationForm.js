@@ -1,9 +1,9 @@
-import styles from '../styles/Setup.module.css'
+import styles from '../styles/Setup.module.css';
 import Button from './Button';
 
 const ApplicationForm = ( { onSubmit, appName } ) => {
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const requestOptions = {
       method: 'POST',
@@ -14,13 +14,13 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
       body: JSON.stringify({ name: appName[0] })
     };
 
-    await fetch('http://localhost:3005/aws/bucket', requestOptions)
+    await fetch('http://localhost:3005/aws/bucket', requestOptions);
 
-    onSubmit(true)
+    onSubmit(true);
   }
 
   async function handleChange(e) {
-    await appName[1](e.target.value)
+    await appName[1](e.target.value);
   }
 
   return (
@@ -44,7 +44,7 @@ const ApplicationForm = ( { onSubmit, appName } ) => {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default ApplicationForm
+export default ApplicationForm;

@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Dashboard.module.css';
@@ -24,7 +23,7 @@ export default function Home() {
   }
 
   const handleDestroy = () => {
-    streamTfData('destroy', 'Destruction', false, dispatch)
+    streamTfData('destroy', 'Destruction', false, dispatch);
     dispatch({type: "destroy"});
   }
 
@@ -34,7 +33,7 @@ export default function Home() {
     const getApplications = async () => {
       const response = await fetch('http://localhost:3005/aws/applications');
       const data = await response.json();
-
+      
       if (data.applications.length === 0) {
         router.push('/welcome');
       } else {
@@ -71,7 +70,7 @@ export default function Home() {
     }
 
     getEnvName();
-  }, [applications])
+  }, [applications]);
 
   const handleViewJSON = () => {
     setViewJsonModal(!viewJsonModal);
@@ -92,5 +91,5 @@ export default function Home() {
         <DashboardContainers viewAddContainerModal={viewAddContainerModal} onClick={handleViewAddContainer} applications={applications}/>
       </main>
     </>
-  )
+  );
 }

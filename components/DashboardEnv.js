@@ -1,4 +1,4 @@
-import styles from '../styles/Dashboard.module.css'
+import styles from '../styles/Dashboard.module.css';
 
 const resourceTitles = {
   "vpc": "Virtual Private Cloud",
@@ -20,7 +20,7 @@ const resourceTitles = {
   "taskRole": "IAM Task Role",
   "loadBalancer": "Application Load Balancer",
   "albListener": "Application Load Balancer Listener"
-}
+};
 
 const DashboardEnv = ({ state, envName }) => {
   return (
@@ -54,7 +54,7 @@ const DashboardEnv = ({ state, envName }) => {
                       <span className={state.post[stack][resources]}></span> }
                       {resourceTitles[resources]}
                     </li>
-                  )
+                  );
                 })}
                 </ul>
              </div>
@@ -62,7 +62,7 @@ const DashboardEnv = ({ state, envName }) => {
           })}
       </div>
     </div>
-  )
+  );
 }
 
-export default DashboardEnv
+export default DashboardEnv;
